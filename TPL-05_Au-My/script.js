@@ -1,5 +1,11 @@
 // 1. Khởi tạo Animation
-AOS.init({ duration: 1000, once: true, offset: 50 });
+// Tăng duration từ 1000ms lên 1200ms cho mượt hơn
+AOS.init({
+    duration: 1200, // Thời gian chạy hiệu ứng chậm lại một chút
+    once: true,     // Chỉ chạy 1 lần
+    offset: 60,     // Bắt đầu chạy sớm hơn một chút khi cuộn
+    easing: 'ease-out-cubic' // Kiểu chuyển động mượt mà, kết thúc chậm
+});
 
 // 2. Xử lý Nhạc nền (Giữ nguyên)
 const musicBtn = document.getElementById('musicBtn');

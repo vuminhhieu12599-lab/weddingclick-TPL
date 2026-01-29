@@ -168,3 +168,48 @@ h1, h2, h3, .serif-font { font-family: 'Playfair Display', serif; }
 /* Nút nhạc */
 .music-btn.playing { animation: spin 3s linear infinite; border-color: var(--primary-color); }
 @keyframes spin { 100% { transform: rotate(360deg); } }
+/* --- CÁC ANIMATION TÙY CHỈNH (Thêm vào cuối file) --- */
+
+/* 1. Hiệu ứng Ken Burns (Zoom-out chậm cho ảnh bìa) */
+.ken-burns {
+    animation: kenBurnsEffect 20s ease-out infinite alternate;
+}
+
+@keyframes kenBurnsEffect {
+    0% {
+        transform: scale(1.15); /* Bắt đầu phóng to 115% */
+    }
+    100% {
+        transform: scale(1); /* Kết thúc ở kích thước gốc */
+    }
+}
+/* Lưu ý: Cần thêm class 'overflow-hidden' cho thẻ cha chứa ảnh này trong HTML */
+
+
+/* 2. Hiệu ứng Hắt sáng nhẹ (Pulse) cho nút quan trọng */
+.btn-pulse {
+    position: relative;
+    overflow: hidden;
+}
+.btn-pulse::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4), /* Màu ánh sáng quét qua */
+        transparent
+    );
+    animation: shine 3s infinite; /* Chạy mãi mãi mỗi 3s */
+    animation-delay: 2s; /* Đợi 2s sau khi load web mới bắt đầu chạy */
+}
+
+@keyframes shine {
+    100% {
+        left: 100%;
+    }
+}
