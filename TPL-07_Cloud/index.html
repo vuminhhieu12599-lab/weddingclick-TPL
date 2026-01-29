@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minh Hiếu & Phương Thanh | Wedding Invitation</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="curtain-overlay">
+        <div class="curtain-panel left-panel"></div>
+        <div class="curtain-panel right-panel"></div>
+        
+        <div class="loading-text font-text"></div>
+    </div>
+
+    <div class="music-control" onclick="toggleMusic()">
+        <i class="fas fa-music"></i>
+    </div>
+    <audio id="bg-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="main-wrapper">
+        
+        <section class="container header-section">
+            <p class="sub-title font-text" data-aos="fade-down" data-aos-delay="0" data-aos-duration="1000">Save The Date</p>
+            
+            <h1 class="main-names font-art" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="1200">
+                Minh Hiếu <br>&<br> Phương Thanh
+            </h1>
+            
+            <div class="wedding-date font-text" data-aos="flip-up" data-aos-delay="400">23 . 02 . 2025</div>
+            
+            <img src="images/intro-couple.jpg" alt="Cô dâu chú rể" class="hero-img" data-aos="fade-up" data-aos-delay="500">
+        </section>
+
+        <section class="container family-section">
+            <div class="family-box" data-aos="fade-right">
+                <h3 class="font-text uppercase" style="color:#888;">Nhà Trai</h3>
+                <p class="font-text">Ông: <b>Vũ Ngọc Lê</b></p>
+                <p class="font-text">Bà: <b>Nguyễn Thị Mơ</b></p>
+                
+                <h2 class="groom-name font-text uppercase">Minh Hiếu</h2>
+            </div>
+
+            <div class="family-divider" data-aos="zoom-in">
+                <i class="fas fa-heart"></i>
+            </div>
+
+            <div class="family-box" data-aos="fade-left">
+                <h3 class="font-text uppercase" style="color:#888;">Nhà Gái</h3>
+                <p class="font-text">Ông: <b>Bùi Quang Tuấn</b></p>
+                <p class="font-text">Bà: <b>Đặng Thanh Huyền</b></p>
+                
+                <h2 class="bride-name font-text uppercase">Phương Thanh</h2>
+            </div>
+        </section>
+
+        <section class="container" data-aos="fade-up">
+            <div class="event-card">
+                <h2 class="font-text uppercase highlight-text">Tiệc Mừng Lễ Thành Hôn</h2>
+                <div class="info-group">
+                    <p class="time font-text"><i class="far fa-clock"></i> 15:30 | Thứ Bảy</p>
+                    <p class="big-date font-text">22.02.2025</p>
+                    <p class="location font-text">Tại Tư Gia Nhà Trai</p>
+                    <p class="lunar-date font-text">(Tức ngày 25 tháng 01 năm Ất Tỵ)</p>
+                </div>
+                
+                <div class="action-buttons">
+                    <button onclick="openRSVP()" class="btn-primary font-text">Gửi Lời Chúc</button>
+                    <button onclick="openGift()" class="btn-secondary font-text">Mừng Cưới</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" data-aos="fade-up">
+            <img src="images/calendar-img.png" class="calendar-img" alt="Lịch tháng 2">
+            
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.xxxx" 
+                        width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div style="margin-top: 15px;">
+                <a href="https://maps.google.com" target="_blank" class="map-link font-text">
+                    <i class="fas fa-map-marked-alt"></i> Mở Google Maps
+                </a>
+            </div>
+        </section>
+
+        <section class="container" style="background: #fff;">
+            <h2 class="font-art title-album" data-aos="fade-down">Album Hình Cưới</h2>
+            <div class="gallery-grid">
+                <img src="images/album1.jpg" data-aos="zoom-in">
+                <img src="images/album2.jpg" data-aos="zoom-in" data-aos-delay="100">
+                <img src="images/album3.jpg" data-aos="zoom-in" data-aos-delay="200">
+                <img src="images/album4.jpg" data-aos="zoom-in" data-aos-delay="300">
+            </div>
+        </section>
+
+        <footer class="footer-thankyou">
+            <div class="overlay-footer"></div>
+            <div class="content-footer" data-aos="zoom-in">
+                <h1 class="font-art">Thank You</h1>
+                <p class="font-text">Minh Hiếu & Phương Thanh</p>
+            </div>
+        </footer>
+    </div>
+
+    <div id="gift-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('gift-modal')">×</span>
+            <h3 class="font-text header-modal uppercase">Hộp Mừng Cưới</h3>
+            <img src="images/qr-code.jpg" class="qr-img">
+            <p class="bank-info font-text">MB Bank - 123456789</p>
+            <p class="bank-info font-text">Chủ TK: Nguyen Van A</p>
+            <div class="modal-actions">
+                <button onclick="copyBankNumber('123456789')"><i class="fas fa-copy"></i> Sao chép STK</button>
+                <a href="images/qr-code.jpg" download><i class="fas fa-download"></i> Tải ảnh</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="rsvp-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('rsvp-modal')">×</span>
+            <h3 class="font-text header-modal uppercase">Gửi Lời Chúc</h3>
+            <form id="rsvp-form" onsubmit="submitRSVP(event)">
+                <input type="text" name="name" placeholder="Tên của bạn" required class="input-field">
+                <select name="relationship" class="input-field" required>
+                    <option value="">Bạn là...</option>
+                    <option value="Bạn chú rể">Bạn chú rể</option>
+                    <option value="Bạn cô dâu">Bạn cô dâu</option>
+                    <option value="Người thân">Người thân</option>
+                </select>
+                <textarea name="message" placeholder="Viết lời chúc tại đây..." rows="4" class="input-field" required></textarea>
+                <button type="submit" class="btn-submit">Gửi Lời Chúc</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

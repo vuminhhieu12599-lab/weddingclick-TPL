@@ -1,0 +1,280 @@
+/* =========================================
+   1. CORE RESET & MOBILE FIX
+   ========================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { 
+    width: 100%; min-height: 100%; 
+    overflow-x: hidden !important; 
+    font-family: 'Quicksand', sans-serif; 
+    color: #333; 
+    line-height: 1.6;
+}
+
+:root { 
+    --primary: #2c3e50; 
+    --accent: #e67e22; 
+    --light: #f9f9f9; 
+    --font-script: 'Great Vibes', cursive; 
+    --font-serif: 'Playfair Display', serif; 
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+/* =========================================
+   2. INTRO OVERLAY
+   ========================================= */
+#intro-overlay { 
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
+    background-color: var(--primary); z-index: 99999; 
+    display: flex; flex-direction: column; 
+    align-items: center; justify-content: center; 
+    padding: 20px; 
+    transition: transform 1.5s ease-in-out; 
+}
+#intro-overlay.slide-up { transform: translateY(-100%); }
+
+.intro-content { width: 100%; max-width: 400px; text-align: center; }
+.monogram { font-family: var(--font-script); font-size: 4rem; color: #fff; margin-bottom: 20px; }
+.btn-intro { 
+    background: transparent; border: 1px solid #fff; color: #fff; 
+    padding: 12px 35px; border-radius: 50px; font-size: 1rem; 
+    cursor: pointer; margin-top: 30px; text-transform: uppercase; 
+    letter-spacing: 2px;
+}
+
+/* =========================================
+   3. HERO (BÌA) - ĐÃ SỬA FONT NGÀY THÁNG
+   ========================================= */
+.hero { 
+    height: 100vh; min-height: 600px; 
+    background-size: cover; background-position: center; 
+    display: flex; 
+    align-items: flex-end; 
+    justify-content: center; 
+    position: relative; color: #fff; 
+    padding-bottom: 80px; 
+}
+.hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.3); }
+
+.hero-content { 
+    position: relative; z-index: 2; text-align: center; 
+    border: 1px solid rgba(255,255,255,0.6); 
+    padding: 20px; 
+    border-radius: 10px; 
+    background: rgba(0,0,0,0.3); 
+    backdrop-filter: blur(3px); 
+    width: 90%; max-width: 400px;
+    margin-bottom: 20px;
+}
+.hero-title { font-family: var(--font-script); font-size: 3.5rem; line-height: 1.1; margin: 10px 0; }
+
+/* --- ĐÂY LÀ PHẦN SỬA FONT --- */
+/* ... (Các phần trên giữ nguyên) ... */
+
+/* =========================================
+   SỬA LẠI FONT NGÀY THÁNG (HERO)
+   ========================================= */
+.hero-date { 
+    border-top: 1px solid rgba(255,255,255,0.9); 
+    border-bottom: 1px solid rgba(255,255,255,0.9); 
+    padding: 15px 0; margin: 20px 0; 
+    
+    /* ĐỔI VỀ FONT KHÔNG CHÂN (QUICKSAND) GIỐNG BÊN DƯỚI */
+    font-family: 'Quicksand', sans-serif !important; 
+    
+    font-size: 1.2rem; 
+    font-weight: 700; /* In đậm */
+    letter-spacing: 2px; /* Dãn chữ rộng ra cho sang */
+    display: flex; justify-content: center; align-items: center; gap: 15px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Đổ bóng nhẹ cho dễ đọc */
+}
+
+/* Số ngày to nổi bật hơn */
+.hero-date .day { 
+    font-size: 2.5rem; /* Số to hẳn lên */
+    font-weight: 700;
+    line-height: 1;
+    position: relative;
+    top: -2px; /* Căn chỉnh lại cho cân đối với chữ 2 bên */
+}
+
+/* ... (Các phần dưới giữ nguyên) ... */
+.hero-date .day { font-size: 1.5rem; } /* Số ngày to hơn chút xíu */
+/* ----------------------------- */
+
+.hero-guest-name { 
+    font-family: var(--font-script); font-size: 2.2rem; 
+    color: #ffd700; display: block; margin-top: 5px; word-wrap: break-word; 
+}
+.scroll-down { 
+    position: absolute; bottom: 10px; z-index: 2; 
+    color: #fff; animation: bounce 2s infinite; 
+}
+
+/* =========================================
+   4. CHUNG CHO CÁC PHẦN
+   ========================================= */
+.section-container { padding: 50px 20px; max-width: 1000px; margin: 0 auto; }
+.text-center { text-align: center; }
+.main-title { 
+    font-family: var(--font-serif); font-size: 2rem; 
+    margin-bottom: 15px; text-transform: uppercase; line-height: 1.3; 
+}
+.sub-title { 
+    color: var(--accent); font-weight: bold; letter-spacing: 1px; 
+    text-transform: uppercase; margin-bottom: 10px; font-size: 0.9rem;
+}
+
+/* =========================================
+   5. CẶP ĐÔI
+   ========================================= */
+.couple-wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 40px; }
+.groom-box, .bride-box { flex: 1; min-width: 300px; }
+.photo-frame { 
+    width: 280px; height: 380px; margin: 0 auto 20px; 
+    border: 1px solid #ddd; padding: 10px; background: #fff; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+}
+.photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+.name-tag { font-family: var(--font-script); font-size: 2rem; color: var(--primary); margin-top: 10px; }
+
+/* =========================================
+   6. GALLERY & THIỆP MỜI
+   ========================================= */
+.invitation-grid { margin-top: 20px; }
+
+.gallery-mini { 
+    display: flex; align-items: center; justify-content: center; 
+    gap: 15px; height: 350px; margin-bottom: 30px; 
+}
+.gallery-item {
+    flex: 1; height: 200px; border-radius: 10px;
+    overflow: hidden; opacity: 0.8; transition: all 0.5s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.gallery-item.center {
+    flex: 1.3; height: 320px; opacity: 1; z-index: 10;
+    transform: scale(1.05); box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    border: 2px solid #fff;
+}
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+
+.invitation-card { 
+    background: #fff; padding: 40px 20px; border: 1px solid #eee; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-radius: 10px; 
+    position: relative; z-index: 5;
+}
+
+/* =========================================
+   SỬA FONT TIÊU ĐỀ THIỆP (GIỐNG CHỮ "THIỆP MỜI")
+   ========================================= */
+.invitation-card h3 {
+    /* Đổi sang font có chân sang trọng */
+    font-family: 'Playfair Display', serif; 
+    
+    font-size: 1.8rem; /* Điều chỉnh kích thước cho vừa vặn */
+    color: var(--primary);
+    margin-bottom: 20px;
+    text-transform: uppercase; /* Viết hoa toàn bộ cho trang trọng */
+    letter-spacing: 1px;
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+.location-box { margin-bottom: 25px; border-bottom: 1px dashed #ddd; padding-bottom: 20px; }
+.location-name { 
+    font-weight: bold; font-size: 1.1rem; 
+    text-transform: uppercase; color: var(--primary); margin-bottom: 5px; 
+}
+.location-addr { font-size: 0.95rem; color: #666; font-style: italic; }
+
+.calendar-box { 
+    background: #fafafa; padding: 20px; border-radius: 10px; 
+    margin: 0 auto; border: 1px solid #eee;
+}
+.time-row { display: flex; justify-content: center; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+.time-row .label { font-size: 1rem; color: #555; }
+.time-row .time-big { font-size: 2rem; font-weight: bold; color: var(--accent); line-height: 1; }
+
+.date-row { 
+    display: flex; justify-content: center; align-items: center; 
+    gap: 15px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; 
+    padding: 10px 0; margin-bottom: 10px;
+}
+.date-col { font-weight: bold; text-transform: uppercase; color: #333; }
+.date-col.big-num { font-size: 3rem; color: var(--primary); line-height: 1; }
+
+.lunar-date { font-style: italic; color: #777; font-size: 0.9rem; }
+
+.action-buttons { display: flex; flex-direction: column; gap: 15px; align-items: center; margin-top: 30px; }
+.btn-main, .btn-gift { 
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px; 
+    padding: 15px 40px; border-radius: 50px; font-weight: bold; 
+    text-transform: uppercase; width: 100%; max-width: 320px; 
+    cursor: pointer; border: none; font-size: 0.9rem;
+}
+.btn-main { background: var(--primary); color: #fff; }
+.btn-gift { background: var(--accent); color: #fff; }
+
+/* =========================================
+   7. ĐẾM NGƯỢC
+   ========================================= */
+.countdown-section { 
+    background-color: var(--light); padding: 50px 20px; 
+    text-align: center; border-top: 1px solid #eee; border-bottom: 1px solid #eee;
+}
+.timer-box { display: flex; justify-content: center; gap: 15px; margin-top: 25px; }
+.time-item { 
+    background: #fff; width: 75px; height: 75px; 
+    border-radius: 50%; display: flex; flex-direction: column; 
+    align-items: center; justify-content: center; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08); border: 1px solid #eee;
+}
+.time-item span { font-weight: bold; font-size: 1.4rem; color: var(--primary); line-height: 1; }
+.time-item label { font-size: 0.7rem; color: #888; text-transform: uppercase; margin-top: 3px; }
+
+/* =========================================
+   8. ALBUM & MAP & FOOTER
+   ========================================= */
+.album-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 20px; }
+.album-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 5px; }
+
+.map-box { border-radius: 10px; overflow: hidden; border: 1px solid #ddd; }
+.btn-map { display: inline-block; margin-top: 10px; padding: 10px 20px; border: 1px solid var(--primary); border-radius: 20px; color: var(--primary); font-weight: bold; }
+
+.footer { 
+    background-size: cover; background-position: center; height: 350px; 
+    display: flex; align-items: center; justify-content: center; 
+    color: #fff; position: relative; 
+}
+.thank-you { font-family: var(--font-script); font-size: 4rem; position: relative; z-index: 2; }
+
+/* =========================================
+   9. MODAL & EXTRAS
+   ========================================= */
+.music-box { position: fixed; bottom: 20px; left: 20px; width: 50px; height: 50px; background: rgba(255,255,255,0.9); border-radius: 50%; z-index: 9999; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--primary); cursor: pointer; }
+.music-box.playing .music-icon { animation: spin 4s linear infinite; color: var(--accent); }
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+
+/* Modal Styles */
+.qr-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 100000; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; visibility: hidden; transition: 0.3s; }
+.qr-modal.active { opacity: 1; visibility: visible; }
+.qr-modal-content { background: #fff; width: 100%; max-width: 400px; padding: 30px; border-radius: 15px; text-align: center; position: relative; transform: translateY(20px); transition: 0.3s; }
+.qr-modal.active .qr-modal-content { transform: translateY(0); }
+.close-modal { position: absolute; top: 10px; right: 10px; background: #eee; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; }
+.form-group { margin-bottom: 15px; }
+.form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; }
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+    .main-title { font-size: 1.5rem; }
+    .hero-title { font-size: 2.8rem; }
+    .gallery-mini { height: 280px; }
+    .gallery-item { height: 160px; }
+    .gallery-item.center { height: 250px; }
+    .album-grid img { height: 180px; }
+    .date-col.big-num { font-size: 2.5rem; }
+}

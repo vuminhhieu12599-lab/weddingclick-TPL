@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Wedding Invitation | Tú & Nhi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div id="intro-screen">
+        <div class="intro-bg"></div>
+        <div class="envelope-wrapper" id="envelope-wrapper">
+            <div class="envelope">
+                
+                <div class="envelope-inner-bg"></div>
+
+                <div class="reveal-photo-container">
+                    <img src="images/thank-you.jpg" alt="Wedding Reveal">
+                </div>
+                
+                <div class="envelope-left"></div>
+                <div class="envelope-right"></div>
+                <div class="envelope-front"></div>
+                
+                <div class="envelope-flap"></div>
+                
+                <div class="wax-seal" onclick="openEnvelope()">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+            </div>
+            <p class="click-hint">Chạm vào trái tim để mở thiệp</p>
+        </div>
+    </div>
+
+    <audio id="bg-music" loop><source src="Audio/Beautiful in White.mp3" type="audio/mpeg"></audio>
+    <div class="music-control hidden" id="musicBtn"><i class="fa-solid fa-music"></i></div>
+    <div class="blobs-container hidden" id="main-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="main-content hidden" id="main-content">
+        <div id="tiktok-chat-container"></div>
+        <section class="hero-section text-center">
+            <p class="top-tag anim-blur">LỄ THÀNH HÔN</p>
+            <h1 class="main-title anim-blur delay-1">
+                <span class="name-group">Anh Tú</span>
+                <span class="and">&</span>
+                <span class="name-group">Diệu Nhi</span>
+            </h1>
+            <div class="hero-image-wrapper anim-zoom delay-2">
+                <img src="images/anh_dau_tien.jpg" alt="Wedding Cover">
+            </div>
+            <div class="new-date-display anim-blur delay-2">
+                <div class="nd-month">THÁNG 01</div>
+                <div class="nd-day">30</div>
+                <div class="nd-year">NĂM 2026</div>
+            </div>
+            <div class="nd-time anim-blur delay-2">CHỦ NHẬT — 08:00 SÁNG</div>
+            <div id="countdown-box" class="anim-up delay-3">
+                <div class="time-item"><span id="days">00</span><small>Ngày</small></div>
+                <div class="time-item"><span id="hours">00</span><small>Giờ</small></div>
+                <div class="time-item"><span id="minutes">00</span><small>Phút</small></div>
+                <div class="time-item"><span id="seconds">00</span><small>Giây</small></div>
+            </div>
+        </section>
+
+        <section class="content-card anim-up">
+            <h2 class="card-title">GIA ĐÌNH HAI BÊN</h2>
+            <div class="family-flex">
+                <div class="family-col">
+                    <h3>NHÀ TRAI</h3>
+                    <div class="f-icon"><i class="fa-solid fa-mars-double"></i></div>
+                    <p>Ông: Phùng Đức Chung</p>
+                    <p>Bà: Nguyễn Thị Kim Thúy</p>
+                </div>
+                <div class="divider-vertical"></div>
+                <div class="family-col">
+                    <h3>NHÀ GÁI</h3>
+                    <div class="f-icon"><i class="fa-solid fa-venus-double"></i></div>
+                    <p>Ông: Phạm Văn Tấn</p>
+                    <p>Bà: Nguyễn Thị Kim Oanh</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-card anim-up">
+            <h2 class="card-title">TIỆC CƯỚI ĐƯỢC TỔ CHỨC TẠI</h2>
+            <div class="event-box">
+                <div class="event-loc-icon"><i class="fa-solid fa-house-chimney-heart"></i></div>
+                <h3>TƯ GIA NHÀ TRAI</h3>
+                <p>Khu 2 Đồng Trung, xã Tu Vũ, Phú Thọ</p>
+                <div class="map-area">
+                    <a href="https://goo.gl/maps/placeholder" target="_blank" class="btn-map">
+                        <i class="fa-solid fa-location-arrow"></i> Dẫn đường
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-card anim-up">
+            <div class="calendar-header"><span class="cal-month">Tháng 1</span> <span class="cal-year">2026</span></div>
+            <div class="calendar-wrapper">
+                <table>
+                    <thead><tr><th>CN</th><th>T2</th><th>T3</th><th>T4</th><th>T5</th><th>T6</th><th>T7</th></tr></thead>
+                    <tbody>
+                        <tr><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+                        <tr><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
+                        <tr><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
+                        <tr><td>19</td><td class="special-date"><div class="heart-beat"><i class="fa-solid fa-heart"></i><span>20</span></div></td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
+                        <tr><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="lunar-note">(Tức ngày 02 tháng Chạp năm Ất Tỵ)</p>
+        </section>
+
+        <section class="content-card anim-up">
+            <h2 class="card-title">GỬI LỜI CHÚC</h2>
+            <form id="wedding-rsvp-form">
+                <input type="text" id="form-name" placeholder="Tên của bạn..." required>
+                <textarea rows="3" placeholder="Viết lời chúc..."></textarea>
+                <select><option value="">Bạn sẽ tham dự chứ?</option><option value="yes">Sẽ tham dự</option><option value="no">Rất tiếc, mình bận</option></select>
+                <button type="submit" class="btn-submit">Gửi Lời Chúc</button>
+            </form>
+        </section>
+        
+        <div class="button-group anim-up">
+             <button id="btn-show-qr" class="btn-big-qr" onclick="openQR()"><i class="fa-solid fa-gift"></i> Mừng Cưới</button>
+        </div>
+
+        <section class="album-section anim-up">
+            <h2 class="section-heading">Album Ảnh Cưới</h2>
+            <p class="album-sub">Chạm vào ảnh để xem rõ hơn</p>
+            <div class="masonry-grid">
+                <img src="images/album2.jpg" onclick="openLightbox(this)">
+                <img src="images/album3.jpg" onclick="openLightbox(this)">
+                <img src="images/album4.jpg" onclick="openLightbox(this)">
+                <img src="images/album5.jpg" onclick="openLightbox(this)">
+                <img src="images/album6.jpg" onclick="openLightbox(this)">
+                <img src="images/album7.jpg" onclick="openLightbox(this)">
+            </div>
+        </section>
+
+        <footer class="footer-end anim-zoom">
+            <img src="images/thank-you.jpg" class="footer-bg">
+            <div class="footer-overlay"><h2>Thank You</h2><p>Kiên & Ánh</p></div>
+        </footer>
+        <div style="height: 100px;"></div>
+    </main>
+
+    <div id="live-bottom-bar" class="live-bottom-bar hidden-bar-init">
+        <div class="live-bar-content">
+            <div class="input-wrapper">
+                <input type="text" id="live-wish-input" placeholder="Gửi lời chúc...">
+                <button id="btn-live-send" onclick="sendLiveWish()"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+            <div class="icon-wrapper" onclick="openQR()"><i class="fa-solid fa-gift shake-anim"></i></div>
+            <div class="close-wrapper" onclick="toggleBottomBar(false)"><i class="fa-solid fa-xmark"></i></div>
+        </div>
+    </div>
+    <div id="reopen-bar-btn" class="reopen-btn hidden" onclick="toggleBottomBar(true)"><i class="fa-solid fa-comment-dots"></i></div>
+
+    <div id="qr-modal" class="qr-modal hidden">
+        <div class="qr-content">
+            <span class="close-qr">&times;</span><div class="qr-header">Hộp Mừng Cưới</div>
+            <img id="qr-image-src" src="images/qr.jpg"><div class="bank-info"><span class="bank-name">MB Bank</span><span id="stk-text" class="bank-num">123456789</span></div>
+            <div class="qr-btns"><button onclick="copySTK()">Copy STK</button><a href="#" class="dl-qr">Tải QR</a></div>
+        </div>
+    </div>
+    <div id="lightbox" class="lightbox hidden" onclick="closeLightbox()"><span class="close-lb">&times;</span><img id="lightbox-img" src=""></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

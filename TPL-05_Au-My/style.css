@@ -1,0 +1,170 @@
+/* --- BIẾN MÀU SẮC (CHỈ CẦN SỬA Ở ĐÂY LÀ ĐỔI CẢ WEB) --- */
+:root {
+    --primary-color: #6B8E78;    /* Màu chủ đạo: Xanh Sage Green */
+    --accent-color: #C5A059;     /* Màu nhấn: Vàng đồng trầm */
+    --bg-color: #F9F7F2;         /* Màu nền: Kem nhạt (Sang hơn trắng tinh) */
+    --text-dark: #2C3E50;        /* Màu chữ: Xám đen */
+    --text-light: #7F8C8D;       /* Màu chữ phụ: Xám nhạt */
+}
+
+/* Cấu hình cơ bản */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden; /* Chống vỡ layout ngang trên điện thoại */
+}
+
+/* Font tiêu đề sang trọng */
+h1, h2, h3, .serif-font {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Hiệu ứng ảnh bìa (Hero) */
+.hero-section {
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Tạo hiệu ứng Parallax khi cuộn */
+    height: 100vh;
+}
+
+/* Tùy chỉnh thanh cuộn (Scrollbar) */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-color); }
+::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 10px; }
+
+/* Nút bấm (Button) */
+.btn-primary {
+    background-color: var(--text-dark);
+    color: white;
+    padding: 12px 32px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--text-dark);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--text-dark);
+    transform: translateY(-2px);
+}
+
+/* Hiệu ứng Masonry cho Album ảnh */
+.masonry-grid {
+    column-count: 2; /* Mobile mặc định 2 cột */
+    column-gap: 1rem;
+}
+@media (min-width: 768px) {
+    .masonry-grid { column-count: 3; } /* PC 3 cột */
+}
+.masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.masonry-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s ease;
+}
+.masonry-item:hover img {
+    transform: scale(1.05); /* Zoom nhẹ khi di chuột */
+}
+
+/* Dresscode Circles */
+.color-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Nút nhạc xoay xoay */
+.music-btn.playing {
+    animation: spin 3s linear infinite;
+    border-color: var(--primary-color);
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
+/* --- GIỮ NGUYÊN CÁC PHẦN TRÊN --- */
+:root {
+    --primary-color: #6B8E78;
+    --accent-color: #C5A059;
+    --bg-color: #F9F7F2;
+    --text-dark: #2C3E50;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+h1, h2, h3, .serif-font { font-family: 'Playfair Display', serif; }
+
+.hero-section {
+    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+/* ... (Các phần scrollbar, masonry giữ nguyên) ... */
+
+/* NÚT BẤM CHÍNH (Solid) */
+.btn-primary {
+    background-color: var(--text-dark);
+    color: white;
+    padding: 12px 32px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-size: 13px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--text-dark);
+}
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--text-dark);
+    transform: translateY(-2px);
+}
+
+/* --- STYLE MỚI CHO NÚT VIỀN (Outline Button) --- */
+.btn-outline {
+    background-color: transparent;
+    color: var(--text-dark);
+    padding: 12px 32px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-size: 13px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--text-dark);
+}
+.btn-outline:hover {
+    background-color: var(--text-dark);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Hiệu ứng hiện Popup mượt mà */
+.modal-active {
+    display: block !important;
+    opacity: 1 !important;
+    transform: translate(-50%, -50%) scale(1) !important;
+}
+.overlay-active {
+    display: block !important;
+    opacity: 1 !important;
+}
+
+/* Nút nhạc */
+.music-btn.playing { animation: spin 3s linear infinite; border-color: var(--primary-color); }
+@keyframes spin { 100% { transform: rotate(360deg); } }

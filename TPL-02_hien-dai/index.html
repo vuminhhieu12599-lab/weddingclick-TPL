@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Anh Tú & Diệu Nhi - Save The Date</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="intro-overlay">
+        <div class="intro-content">
+            <div class="monogram">T & N</div>
+            <p style="letter-spacing: 2px; margin-bottom: 20px; font-size: 0.9rem; opacity: 0.8; color: #eee;">
+                SAVE THE DATE | 30.01.2026
+            </p>
+            <div id="intro-guest-name" style="margin-bottom: 30px; font-size: 1.2rem;"></div>
+            <button type="button" id="btn-open-intro" class="btn-intro" onclick="openInvite()">
+                <i class="fa-solid fa-envelope-open-text"></i> MỞ THIỆP
+            </button>
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="audio/em-dong-y.mp3" type="audio/mp3">
+    </audio>
+    <button class="music-box" id="btnMusic" onclick="toggleMusic()">
+        <div class="music-icon"><i class="fa-solid fa-compact-disc"></i></div>
+    </button>
+
+    <header class="hero" id="home" style="background-image: url('images/anh_dau_tien.jpg');">
+        <div class="hero-overlay"></div>
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="2000">
+            <div id="guestNameHero" class="hero-subtitle">TRÂN TRỌNG KÍNH MỜI</div>
+            <h1 class="hero-title">Anh Tú <small>&</small> Diệu Nhi</h1>
+            <div class="hero-date">
+                <span>THỨ BA</span> <span class="day">30</span> <span>01.2026</span>
+            </div>
+            <p class="hero-location">TRUNG TÂM TIỆC CƯỚI MIPEC PALACE<br>229 Tây Sơn - Đống Đa - Hà Nội</p>
+        </div>
+        <div class="scroll-down"><i class="fa-solid fa-chevron-down"></i></div>
+    </header>
+
+    <section class="section-container text-center">
+        <p class="quote" data-aos="fade-up" data-aos-duration="2000">"Hôn nhân là chuyện cả đời,<br>Yêu người vừa ý, cưới người mình thương..."</p>
+        
+        <div class="couple-wrap">
+            <div class="groom-box" data-aos="fade-right" data-aos-duration="2500">
+                <div class="photo-frame">
+                    <img src="images/chu-re.jpg" alt="Chú Rể" onerror="this.src='https://via.placeholder.com/300x400'">
+                </div>
+                <h3>Nhà Trai</h3>
+                <p class="parents">Ông: Nguyễn Văn A<br>Bà: Nguyễn Thị B</p>
+                <div class="name-tag">Anh Tú</div>
+            </div>
+
+            <div class="bride-box" data-aos="fade-left" data-aos-duration="2500" data-aos-delay="200">
+                <div class="photo-frame">
+                    <img src="images/co-dau.jpg" alt="Cô Dâu" onerror="this.src='https://via.placeholder.com/300x400'">
+                </div>
+                <h3>Nhà Gái</h3>
+                <p class="parents">Ông: Trần Văn C<br>Bà: Lê Thị D</p>
+                <div class="name-tag">Diệu Nhi</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="countdown-section" data-aos="fade-in" data-aos-duration="2500">
+        <p class="sub-title">CÙNG ĐẾM NGƯỢC NGÀY CHUNG ĐÔI</p>
+        <div class="timer-box">
+            <div class="time-item"><span id="days">00</span><label>Ngày</label></div>
+            <div class="time-item"><span id="hours">00</span><label>Giờ</label></div>
+            <div class="time-item"><span id="minutes">00</span><label>Phút</label></div>
+            <div class="time-item"><span id="seconds">00</span><label>Giây</label></div>
+        </div>
+    </section>
+
+    <section class="section-container">
+        <div class="text-center" data-aos="fade-up" data-aos-duration="2000">
+            <h2 class="main-title">Thiệp Mời</h2>
+            <div id="guestNameInvite" class="sub-title">Thân mời tới dự bữa cơm thân mật</div>
+        </div>
+
+        <div class="invitation-grid">
+            <div class="gallery-mini">
+                <div class="gallery-item" data-aos="fade-right" data-aos-duration="2500">
+                    <img src="images/trai.jpg" alt="Ảnh trái">
+                </div>
+                <div class="gallery-item center" data-aos="zoom-in" data-aos-duration="3000" data-aos-delay="300">
+                    <img src="images/giua.jpg" alt="Ảnh giữa">
+                </div>
+                <div class="gallery-item" data-aos="fade-left" data-aos-duration="2500">
+                    <img src="images/phai.jpg" alt="Ảnh phải">
+                </div>
+            </div>
+
+            <div class="invitation-card text-center" data-aos="fade-up" data-aos-duration="2000">
+                <h3>Tiệc mừng lễ thành hôn</h3>
+                
+                <div class="location-box">
+                    <p class="location-name">TRUNG TÂM TIỆC CƯỚI MIPEC PALACE</p>
+                    <p class="location-addr"><i class="fa-solid fa-location-dot"></i> Số 229 Tây Sơn - Phường Đống Đa - TP Hà Nội</p>
+                </div>
+                
+                <div class="calendar-box">
+                    <div class="time-row">
+                        <span class="label">Vào lúc:</span>
+                        <span class="time-big">11:00</span>
+                    </div>
+                    <div class="date-row">
+                        <div class="date-col">THỨ BA</div>
+                        <div class="date-col big-num">30</div>
+                        <div class="date-col">01.2026</div>
+                    </div>
+                    <p class="lunar-date">(Tức ngày 12 tháng 12 năm Ất Tỵ)</p>
+                </div>
+
+                <div class="action-buttons">
+                    <button type="button" id="btnOpenWish" class="btn-main"><i class="fa-solid fa-pen-to-square"></i> Gửi lời chúc</button>
+                    <button type="button" id="btnOpenQR" class="btn-gift"><i class="fa-solid fa-gift"></i> Gửi mừng cưới</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" data-aos="fade-up" data-aos-duration="2000">
+        <div class="text-center"><p class="sub-title">BẢN ĐỒ CHỈ ĐƯỜNG</p></div>
+        <div class="map-box">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.588491851486!2d105.8266223759998!3d21.009126388448985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac800f450807%3A0x419a49bcd94b693a!2sMipec%20Palace!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s" 
+            width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="text-center" style="margin-top: 15px;">
+            <a href="https://maps.google.com" target="_blank" class="btn-map"><i class="fa-solid fa-location-dot"></i> Mở Google Maps</a>
+        </div>
+    </section>
+
+    <section class="section-container text-center">
+        <p class="sub-title">ALBUM ẢNH CƯỚI</p>
+        <h2 class="main-title" data-aos="fade-down" data-aos-duration="2000">KHOẢNH KHẮC HẠNH PHÚC</h2>
+        
+        <div class="album-grid">
+            <img src="images/album2.jpg" data-aos="fade-up" data-aos-duration="2000">
+            <img src="images/album3.jpg" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="200">
+            <img src="images/album4.jpg" data-aos="fade-up" data-aos-duration="2000">
+            <img src="images/album5.jpg" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="200">
+            <img src="images/album6.jpg" data-aos="fade-up" data-aos-duration="2000">
+            <img src="images/album7.jpg" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="200">
+        </div>
+    </section>
+
+    <footer class="footer" style="background-image: url('images/thank-you.jpg');">
+        <div class="hero-overlay"></div>
+        <div class="footer-content" data-aos="zoom-in" data-aos-duration="2500">
+            <h2 class="thank-you">Thank You</h2>
+            <p>Rất hân hạnh được đón tiếp!</p>
+        </div>
+    </footer>
+
+    <div class="qr-modal" id="qrModal">
+        <div class="qr-modal-content">
+            <button type="button" class="close-modal" id="btnCloseQR"><i class="fa-solid fa-xmark"></i></button>
+            <h3>Gửi Quà Mừng Cưới</h3>
+            <img src="images/Qr-code.jpg" alt="QR Code" class="qr-img-full" id="qrImageSource">
+            <div class="bank-info">
+                <p>Ngân hàng: <strong>VIETCOMBANK</strong></p>
+                <p>Chủ TK: <strong>VU MINH HIEU</strong></p>
+                <div class="bank-number-box" id="bankNumberTxt">9967693256</div>
+            </div>
+            <div class="qr-actions">
+                <button type="button" class="btn-qr-action copy" id="btnCopySTK"><i class="fa-regular fa-copy"></i> Copy STK</button>
+                <button type="button" class="btn-qr-action download" id="btnDownloadQR"><i class="fa-solid fa-download"></i> Tải Ảnh</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="qr-modal" id="wishModal">
+        <div class="qr-modal-content" style="max-width: 500px;">
+            <button type="button" class="close-modal" id="btnCloseWish"><i class="fa-solid fa-xmark"></i></button>
+            <h3>Gửi Lời Chúc</h3>
+            <form id="rsvpForm" class="rsvp-form">
+                <div class="form-group"><input type="text" id="name" name="name" placeholder="Tên của bạn?"></div>
+                <div class="form-group"><input type="text" id="relationship" name="relationship" placeholder="Bạn là gì của Dâu Rể?"></div>
+                <div class="form-group"><textarea id="message" name="message" rows="3" placeholder="Lời chúc..."></textarea></div>
+                <div class="form-group">
+                    <select id="attendance" name="attendance">
+                        <option value="Có">Chắc chắn tham dự</option>
+                        <option value="Có thể">Có thể tham dự</option>
+                        <option value="Không">Rất tiếc không thể tham dự</option>
+                    </select>
+                </div>
+                <button type="button" class="btn-main" id="btnSubmitWish" style="width: 100%;">GỬI NGAY</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

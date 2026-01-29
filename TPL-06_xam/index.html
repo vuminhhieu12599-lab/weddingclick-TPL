@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huy Hoàng & Thu Loan - Save The Date</title>
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Huy Hoàng & Thu Loan | Save The Date">
+<meta property="og:description" content="Trân trọng kính mời bạn tham dự lễ thành hôn của chúng mình vào ngày 10.11.2025">
+<meta property="og:image" content="images/thumbnail.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="header-section">
+        <div class="image-container">
+            <img src="images/top-banner.jpg" alt="Couple Photo">
+            <div class="header-text">
+                <p class="sub-title">SAVE THE DATE</p>
+                <h1 class="couple-name">Huy Hoàng <br>&<br> Thu Loan</h1>
+                <p class="date-highlight">10 . 11 . 2025</p>
+                <p class="time">Thứ Hai - 10:00 AM</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="intro-section text-center">
+        <div class="round-image-wrapper">
+            <img src="images/round-avatar.jpg" alt="Cô dâu chú rể" class="round-img">
+            <div class="swirl-decor"></div>
+        </div>
+        <h2 class="script-font">Beautiful in White</h2>
+        <p class="quote">"Hôn nhân không phải là điểm đến, mà là hành trình mà chúng ta cùng nhau bước đi." [cite: 45, 46]</p>
+    </section>
+
+    <section class="family-section">
+        <div class="family-block">
+            <h3>NHÀ TRAI</h3>
+            <p class="parents">Ông: Phạm Văn Ánh<br>Bà: Nguyễn Mai Anh</p>
+            <p class="address"><i class="fas fa-map-marker-alt"></i> Hoàng Ngân, Cầu Giấy, Hà Nội</p>
+        </div>
+        <div class="divider-heart">❤</div>
+        <div class="family-block">
+            <h3>NHÀ GÁI</h3>
+            <p class="parents">Ông: [Tên Bố Cô Dâu]<br>Bà: [Tên Mẹ Cô Dâu]</p>
+            <p class="address"><i class="fas fa-map-marker-alt"></i> Hoàng Ngân, Cầu Giấy, Hà Nội</p>
+        </div>
+    </section>
+
+    <section class="invitation-section text-center">
+        <div class="wine-icon">🥂</div>
+        <h3>TRÂN TRỌNG KÍNH MỜI</h3>
+        <p>Tham dự tiệc mừng lễ thành hôn vào lúc:</p>
+        
+        <div class="calendar-box">
+            <div class="cal-header">THÁNG 10</div>
+            <div class="cal-body">
+                <div class="cal-day">Thứ Hai</div>
+                <div class="cal-date">12</div> <div class="cal-year">2025</div>
+                <div class="lunar-date">(Tức ngày 20 tháng 08 năm Ất Tý)</div>
+            </div>
+        </div>
+
+        <div class="location-box">
+            <h4>ANNALYS WEDDING</h4>
+            <p>123 Hoàng Ngân, Cầu Giấy, Hà Nội</p>
+            <a href="https://maps.google.com" target="_blank" class="btn-map">Xem chỉ đường <i class="fas fa-location-arrow"></i></a>
+        </div>
+    </section>
+
+    <section class="countdown-section">
+        <h3>Cùng đếm ngược ngày chung đôi</h3>
+        <div id="countdown" class="timer-container">
+            <div class="time-box"><span id="days">00</span>Ngày</div>
+            <div class="time-box"><span id="hours">00</span>Giờ</div>
+            <div class="time-box"><span id="minutes">00</span>Phút</div>
+            <div class="time-box"><span id="seconds">00</span>Giây</div>
+        </div>
+    </section>
+
+    <section class="rsvp-section">
+        <h2 class="script-font">Xác nhận tham dự</h2>
+        <form id="wedding-form">
+            <input type="text" placeholder="Tên của bạn là?" required>
+            <input type="text" placeholder="Bạn là gì của Dâu Rể nhỉ?" required>
+            <textarea placeholder="Gửi lời chúc đến Dâu Rể nhé!" rows="3"></textarea>
+            <select>
+                <option value="yes">Tôi sẽ tham dự</option>
+                <option value="maybe">Tôi sẽ xem xét</option>
+                <option value="no">Tiếc quá, tôi bận mất rồi</option>
+            </select>
+            <button type="submit" class="btn-submit">GỬI NGAY</button>
+        </form>
+
+        <div class="donate-box">
+            <button class="btn-donate" onclick="toggleQR()">GỬI MỪNG CƯỚI 💌</button>
+            <div id="qr-popup" class="hidden">
+                <img src="images/qr-code.jpg" alt="Mã QR">
+                <p>Cảm ơn tình cảm của bạn!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <h3>ALBUM HÌNH CƯỚI</h3>
+        <div class="gallery-grid">
+            <img src="images/gallery-1.jpg" alt="Wedding Photo">
+            <img src="images/gallery-2.jpg" alt="Wedding Photo">
+        </div>
+    </section>
+
+    <footer class="footer text-center">
+        <h2>Thank You!</h2>
+        <p>Rất hân hạnh được đón tiếp</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
