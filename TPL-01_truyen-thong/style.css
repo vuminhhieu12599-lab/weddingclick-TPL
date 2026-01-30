@@ -1,21 +1,19 @@
-/* ================= CONFIG MÀU SẮC ================= */
+/* ================= CONFIG ================= */
 :root {
     --primary: #6a1b9a;      
     --secondary: #8e24aa;
     --text: #2c1e33;
     --gold: #c5a059;
-    
     --env-red: #b71c1c;      
     --env-dark: #8a1212;     
     --env-inner: #a31616;    
-    
     --glass: rgba(255, 255, 255, 0.85);
     --shadow: 0 10px 30px rgba(106, 27, 154, 0.15);
     
-    --font-script: 'Alex Brush', cursive;
-    --font-main: 'Montserrat', sans-serif;
-    --font-serif: 'Cormorant Garamond', serif;
-    --font-title: 'Cormorant Garamond', serif;
+    /* CẤU HÌNH FONT */
+    --font-script: 'Alex Brush', cursive;       /* Tên Cô Dâu Chú Rể */
+    --font-main: 'Montserrat', sans-serif;      /* Font chính (Số, nội dung) */
+    --font-serif: 'Cormorant Garamond', serif;  /* Tiêu đề (Lễ Thành Hôn...) */
     
     --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
     --ease-smooth: cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -24,7 +22,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: var(--font-main); color: var(--text); background: #fdfbf7; overflow-x: hidden; }
 
-/* ================= 1. MÀN HÌNH CHỜ (PHONG BÌ REVEAL) ================= */
+/* ================= 1. INTRO SCREEN ================= */
 #intro-screen { 
     position: fixed; inset: 0; z-index: 99999; 
     display: flex; align-items: center; justify-content: center; 
@@ -33,127 +31,57 @@ body { font-family: var(--font-main); color: var(--text); background: #fdfbf7; o
 }
 #intro-screen.fade-out { opacity: 0; visibility: hidden; }
 
-.intro-bg { 
-    position: absolute; inset: 0; 
-    background: url('images/anhbia.jpg') center/cover; 
-    filter: blur(20px) opacity(0.4) grayscale(0.5); 
-    transform: scale(1.1); 
-}
+.intro-bg { position: absolute; inset: 0; background: url('images/anh_dau_tien.jpg') center/cover; filter: blur(20px) opacity(0.4) grayscale(0.5); transform: scale(1.1); }
 
-.envelope-wrapper { 
-    position: relative; width: 340px; height: 230px; 
-    cursor: pointer; z-index: 10; 
-    /* Khi mở, cả phong bì tụt xuống nhẹ để tạo không gian cho ảnh trượt lên */
-    transition: transform 1.2s var(--ease-smooth);
-}
+.envelope-wrapper { position: relative; width: 340px; height: 230px; cursor: pointer; z-index: 10; transition: transform 1.2s var(--ease-smooth); }
 .envelope-wrapper.open { transform: translateY(120px); }
 
-/* KHỐI BAO PHONG BÌ */
-.envelope { 
-    position: relative; width: 100%; height: 100%; 
-    background: var(--env-red); /* Màu nền trùng màu vỏ để kín */
-    transform-style: preserve-3d; 
-    border-radius: 6px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-}
+.envelope { position: relative; width: 100%; height: 100%; background: var(--env-red); transform-style: preserve-3d; border-radius: 6px; box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
+.envelope-inner-bg { position: absolute; inset: 4px; background: var(--env-inner); z-index: 1; border-radius: 4px; box-shadow: inset 0 0 20px rgba(0,0,0,0.5); }
 
-/* 1. Lớp nền bên trong (Z-Index 1) */
-.envelope-inner-bg {
-    position: absolute; inset: 4px; /* Thụt vào xíu */
-    background: var(--env-inner);
-    z-index: 1; border-radius: 4px;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
-}
-
-/* 2. ẢNH CƯỚI (Z-Index 2 - Nằm TRONG túi) */
+/* ẢNH TRƯỢT LÊN */
 .reveal-photo-container {
-    position: absolute;
-    /* Căn giữa */
-    left: 50%; bottom: 10px; /* Neo ở đáy */
-    transform: translateX(-50%);
-    
-    width: 90%; height: 90%; /* Kích thước ảnh trong phong bì */
-    z-index: 2; /* QUAN TRỌNG: Thấp hơn mặt trước (Z=3) */
-    
-    /* Hiệu ứng trượt */
-    transition: transform 1.5s 0.3s var(--ease-smooth); /* Chờ nắp mở (0.3s) rồi mới trượt */
-    
-    padding: 5px; background: #fff; /* Viền trắng */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    border-radius: 4px;
+    position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%);
+    width: 90%; height: 90%; z-index: 2;
+    transition: transform 1.5s 0.2s var(--ease-smooth); 
+    padding: 5px; background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.2); border-radius: 4px;
 }
-.reveal-photo-container img { 
-    width: 100%; height: 100%; 
-    object-fit: cover; /* Cắt ảnh vừa khung */
-    object-position: top center;
-    border-radius: 2px; 
-    display: block; 
-}
+.reveal-photo-container img { width: 100%; height: 100%; object-fit: cover; object-position: top center; border-radius: 2px; display: block; }
+.envelope-wrapper.open .reveal-photo-container { transform: translate(-50%, -180px); z-index: 10; }
 
-/* KHI MỞ: Ảnh trượt lên cao ra khỏi túi */
-.envelope-wrapper.open .reveal-photo-container {
-    transform: translate(-50%, -180px); /* Trượt lên 180px */
-    z-index: 10; /* Đưa lên trên cùng sau khi trượt xong để rõ nét */
-}
-
-/* 3. CÁC VÁCH NGĂN (Z-Index 3 - Đè lên ảnh) -> TẠO CẢM GIÁC TÚI */
-.envelope-left {
-    position: absolute; top: 0; left: 0; z-index: 3;
-    border-style: solid; 
-    border-width: 115px 0 115px 170px;
-    border-color: transparent transparent transparent var(--env-red);
-    filter: brightness(0.9);
-}
-.envelope-right {
-    position: absolute; top: 0; right: 0; z-index: 3;
-    border-style: solid; 
-    border-width: 115px 170px 115px 0;
-    border-color: transparent var(--env-red) transparent transparent;
-    filter: brightness(0.9);
-}
-.envelope-front { 
-    position: absolute; bottom: 0; left: 0; width: 100%; height: 0; z-index: 3; 
-    border-style: solid; border-width: 0 170px 130px 170px; 
-    border-color: transparent transparent var(--env-red) transparent;
-    filter: brightness(0.95);
-}
-
-/* 4. Nắp phong bì (Z-Index 4 - Che tất cả) */
-.envelope-flap { 
-    position: absolute; top: 0; left: 0; width: 100%; height: 0; 
-    z-index: 4; 
-    border-style: solid; border-width: 125px 170px 0 170px; 
-    border-color: var(--env-dark) transparent transparent transparent; 
-    transform-origin: top; 
-    transition: transform 0.8s var(--ease-elastic), z-index 0.8s;
-    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3));
-}
-/* KHI MỞ: Nắp bật lên và ra sau */
+.envelope-left { position: absolute; top: 0; left: 0; z-index: 3; border-style: solid; border-width: 115px 0 115px 170px; border-color: transparent transparent transparent var(--env-red); filter: brightness(0.9); }
+.envelope-right { position: absolute; top: 0; right: 0; z-index: 3; border-style: solid; border-width: 115px 170px 115px 0; border-color: transparent var(--env-red) transparent transparent; filter: brightness(0.9); }
+.envelope-front { position: absolute; bottom: 0; left: 0; width: 100%; height: 0; z-index: 3; border-style: solid; border-width: 0 170px 130px 170px; border-color: transparent transparent var(--env-red) transparent; filter: brightness(0.95); }
+.envelope-flap { position: absolute; top: 0; left: 0; width: 100%; height: 0; z-index: 4; border-style: solid; border-width: 125px 170px 0 170px; border-color: var(--env-dark) transparent transparent transparent; transform-origin: top; transition: transform 0.8s var(--ease-elastic), z-index 0.8s; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3)); }
 .envelope-wrapper.open .envelope-flap { transform: rotateX(180deg); z-index: 0; }
-
-/* 5. Con dấu (Z-Index 5) */
-.wax-seal {
-    position: absolute; top: 125px; left: 50%; transform: translate(-50%, -50%);
-    width: 65px; height: 65px; background: #fff; border-radius: 50%; z-index: 5;
-    display: flex; align-items: center; justify-content: center;
-    color: #d32f2f; font-size: 1.8rem;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3); border: 1px solid #eee; 
-    transition: 0.5s;
-}
+.wax-seal { position: absolute; top: 125px; left: 50%; transform: translate(-50%, -50%); width: 65px; height: 65px; background: #fff; border-radius: 50%; z-index: 5; display: flex; align-items: center; justify-content: center; color: #d32f2f; font-size: 1.8rem; box-shadow: 0 5px 15px rgba(0,0,0,0.3); border: 1px solid #eee; transition: 0.5s; }
 .envelope-wrapper.open .wax-seal { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
-
-.click-hint { 
-    position: absolute; bottom: -60px; width: 100%; text-align: center; 
-    color: #fff; font-family: var(--font-script); font-size: 1.8rem; 
-    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-    animation: pulse 2s infinite; opacity: 0; transition: opacity 0.5s; 
-}
+.click-hint { position: absolute; bottom: -60px; width: 100%; text-align: center; color: #fff; font-family: var(--font-script); font-size: 1.8rem; text-shadow: 0 2px 5px rgba(0,0,0,0.5); animation: pulse 2s infinite; opacity: 0; transition: opacity 0.5s; }
 @keyframes pulse { 0%, 100% { opacity: 0.7; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
 
-
-/* ================= 2. MAIN CONTENT (Copy y nguyên code cũ) ================= */
-.main-content { width: 100%; max-width: 450px; margin: 0 auto; background: transparent; min-height: 100vh; position: relative; z-index: 10; padding-bottom: 150px; }
+/* ================= 2. MAIN CONTENT ================= */
+.main-content { width: 100%; max-width: 450px; margin: 0 auto; background: transparent; min-height: 100vh; position: relative; z-index: 10; padding-bottom: 150px; transition: opacity 1.5s ease-in-out; }
 .main-content.hidden { display: none; }
+
+/* ANIMATION CLASSES */
+.anim-up, .anim-down, .anim-left, .anim-right, .anim-zoom, .anim-blur { opacity: 0; transition: all 1.5s var(--ease-smooth); }
+.anim-up { transform: translateY(60px); }
+.anim-active.anim-up { opacity: 1; transform: translateY(0); }
+.anim-down { transform: translateY(-60px); }
+.anim-active.anim-down { opacity: 1; transform: translateY(0); }
+.anim-left { transform: translateX(-60px); }
+.anim-active.anim-left { opacity: 1; transform: translateX(0); }
+.anim-right { transform: translateX(60px); }
+.anim-active.anim-right { opacity: 1; transform: translateX(0); }
+.anim-zoom { transform: scale(0.8); }
+.anim-active.anim-zoom { opacity: 1; transform: scale(1); }
+.anim-blur { filter: blur(10px); transform: translateY(30px); }
+.anim-active.anim-blur { opacity: 1; filter: blur(0); transform: translateY(0); }
+.delay-1 { transition-delay: 0.2s; } 
+.delay-2 { transition-delay: 0.4s; } 
+.delay-3 { transition-delay: 0.6s; }
+
+/* ... (Blobs và các phần chung giữ nguyên) ... */
 .blobs-container { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
 .blob { position: absolute; border-radius: 50%; filter: blur(50px); opacity: 0.5; }
 .blob-1 { width: 300px; height: 300px; background: #e1bee7; top: -50px; left: -50px; animation: float 10s infinite; }
@@ -166,14 +94,56 @@ body { font-family: var(--font-main); color: var(--text); background: #fdfbf7; o
 .hero-image-wrapper { width: 260px; height: 360px; margin: 0 auto 30px; border-radius: 15px; overflow: hidden; border: 6px solid #fff; outline: 1px solid var(--gold); box-shadow: 0 15px 40px rgba(0,0,0,0.15); position: relative; }
 .hero-image-wrapper::before { content: ''; position: absolute; inset: 10px; border: 1px solid rgba(255,255,255,0.6); z-index: 2; pointer-events: none; border-radius: 8px; }
 .hero-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-.new-date-display { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 10px; color: var(--primary); }
-.nd-day { font-family: var(--font-title); font-size: 4rem; font-weight: bold; line-height: 1; }
-.nd-month, .nd-year { font-size: 1rem; letter-spacing: 2px; font-weight: 600; text-transform: uppercase; }
-.nd-time { font-size: 0.9rem; letter-spacing: 2px; color: var(--gold); margin-bottom: 25px; font-weight: bold; text-transform: uppercase; }
+
+/* ---------------------------------------------------- */
+/* --- CẬP NHẬT FONT SỐ: MONTSERRAT (Modern) --- */
+/* ---------------------------------------------------- */
+
+.new-date-display { 
+    display: flex; justify-content: center; align-items: center; 
+    gap: 15px; margin-bottom: 10px; color: var(--primary); 
+}
+
+/* Tháng Năm: Montserrat */
+.nd-month, .nd-year { 
+    font-size: 1rem; 
+    letter-spacing: 2px; 
+    font-weight: 600; 
+    text-transform: uppercase; 
+    font-family: var(--font-main); /* Montserrat */
+}
+
+/* Ngày 30: Montserrat (To, đậm, hiện đại) */
+.nd-day { 
+    font-family: var(--font-main); /* Montserrat */
+    font-size: 4.5rem; 
+    font-weight: 700; /* Bold hơn */
+    line-height: 1; 
+}
+
+/* Giờ: Montserrat */
+.nd-time { 
+    font-size: 1.1rem; 
+    letter-spacing: 2px; 
+    color: var(--gold); 
+    margin-bottom: 25px; 
+    font-weight: bold; 
+    text-transform: uppercase;
+    font-family: var(--font-main); /* Montserrat */
+}
+
+/* Countdown: Montserrat */
 #countdown-box { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
 .time-item { background: #fff; padding: 10px; border-radius: 10px; min-width: 65px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-.time-item span { display: block; font-weight: 700; font-size: 1.3rem; color: var(--primary); font-family: var(--font-serif); }
+.time-item span { 
+    display: block; font-weight: 700; font-size: 1.5rem; 
+    color: var(--primary); 
+    font-family: var(--font-main); /* Montserrat */
+}
 .time-item small { font-size: 0.6rem; text-transform: uppercase; color: #888; }
+
+/* ---------------------------------------------------- */
+
 .content-card { margin: 25px 15px; padding: 35px 20px; background: var(--glass); border-radius: 20px; box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,0.6); text-align: center; backdrop-filter: blur(10px); }
 .card-title { font-family: var(--font-title); font-size: 1.6rem; font-weight: 700; color: var(--primary); margin-bottom: 25px; border-bottom: 2px solid #eee; padding-bottom: 15px; display: inline-block; text-transform: uppercase; }
 .family-flex { display: flex; justify-content: space-around; align-items: flex-start; }
@@ -189,25 +159,20 @@ body { font-family: var(--font-main); color: var(--text); background: #fdfbf7; o
 .calendar-header { margin-bottom: 15px; font-family: var(--font-title); font-size: 1.4rem; color: var(--primary); font-weight: bold; text-transform: uppercase; }
 .calendar-wrapper table { width: 100%; border-collapse: collapse; }
 .calendar-wrapper th { font-size: 0.8rem; color: #999; padding-bottom: 10px; }
-.calendar-wrapper td { padding: 8px 0; font-weight: 500; color: #444; position: relative; }
+/* Số lịch cũng dùng Montserrat */
+.calendar-wrapper td { padding: 8px 0; font-weight: 500; color: #444; position: relative; font-family: var(--font-main); font-size: 1rem; }
 .heart-beat { width: 35px; height: 35px; margin: 0 auto; display: flex; align-items: center; justify-content: center; position: relative; }
 .heart-beat i { position: absolute; font-size: 35px; color: #e57373; opacity: 0.3; animation: heartbeat 1.5s infinite; }
 .heart-beat span { position: relative; z-index: 2; font-weight: bold; color: #c62828; }
 @keyframes heartbeat { 0% { transform: scale(1); opacity: 0.3; } 50% { transform: scale(1.3); opacity: 0.6; } 100% { transform: scale(1); opacity: 0.3; } }
 .lunar-note { font-style: italic; font-size: 0.85rem; color: #777; margin-top: 15px; }
-.anim-up, .anim-zoom, .anim-blur { opacity: 0; transition: all 1s var(--ease); }
-.anim-blur { filter: blur(5px); transform: translateY(10px); }
-.anim-active.anim-blur { opacity: 1; filter: blur(0); transform: translateY(0); }
-.anim-up { transform: translateY(30px); }
-.anim-active.anim-up { opacity: 1; transform: translateY(0); }
-.anim-zoom { transform: scale(0.9); }
-.anim-active.anim-zoom { opacity: 1; transform: scale(1); }
-.delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.3s; } .delay-3 { transition-delay: 0.5s; }
-#tiktok-chat-container { position: fixed; left: 15px; bottom: 0; width: 300px; height: 350px; padding-bottom: 90px; display: flex; flex-direction: column; justify-content: flex-end; pointer-events: none; z-index: 9990; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%); mask-image: linear-gradient(to bottom, transparent 0%, black 20%); transition: opacity 0.3s; }
-#tiktok-chat-container.hidden-chat { opacity: 0; visibility: hidden; }
-.chat-item { background: rgba(255,255,255,0.7); backdrop-filter: blur(5px); padding: 8px 12px; margin-top: 10px; border-radius: 12px; font-size: 0.95rem; color: #2c1e33; box-shadow: 0 2px 5px rgba(0,0,0,0.05); width: fit-content; max-width: 100%; word-wrap: break-word; animation: slideUp 0.4s ease-out; }
-.chat-name { font-weight: 700; color: var(--primary); margin-right: 5px; }
-@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* CHAT LIVESTREAM */
+#tiktok-chat-container { position: fixed; left: 10px; bottom: 0; width: 240px; height: 180px; padding-bottom: 85px; display: flex; flex-direction: column; justify-content: flex-end; pointer-events: none; z-index: 9990; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 30%); mask-image: linear-gradient(to bottom, transparent 0%, black 30%); opacity: 0; visibility: hidden; transition: opacity 0.5s ease; }
+#tiktok-chat-container.chat-visible { opacity: 1; visibility: visible; }
+.chat-item { background: rgba(255,255,255,0.7); backdrop-filter: blur(4px); padding: 6px 10px; margin-top: 6px; border-radius: 10px; font-size: 0.8rem; color: #333; box-shadow: 0 2px 5px rgba(0,0,0,0.05); width: fit-content; max-width: 100%; word-wrap: break-word; animation: slideUp 0.4s ease-out; border: 1px solid rgba(255,255,255,0.4); }
+.chat-name { font-weight: 700; color: var(--primary); margin-right: 4px; }
+@keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 .live-bottom-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-top: 1px solid rgba(0,0,0,0.05); padding: 10px 15px 15px; z-index: 10000; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease; }
 .live-bottom-bar.hide-down { transform: translateY(100%); }
 .hidden-bar-init { display: none; }
@@ -247,20 +212,14 @@ body { font-family: var(--font-main); color: var(--text); background: #fdfbf7; o
 .hidden { display: none !important; }
 .floating-heart { position: fixed; bottom: 90px; right: 20px; font-size: 20px; pointer-events: none; animation: flyUp 3s linear forwards; z-index: 9995; opacity: 0; }
 @keyframes flyUp { 0% { opacity: 1; transform: translateY(0) scale(0.5) rotate(0deg); } 20% { opacity: 1; transform: translateY(-50px) scale(1.2) rotate(10deg); } 100% { opacity: 0; transform: translateY(-400px) scale(1) rotate(-20deg); } }
-@keyframes pulse { 0%, 100% { opacity: 0.7; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
-
-/* RESPONSIVE */
-@media(max-width: 480px) {
-    .main-title { font-size: 2.8rem !important; flex-direction: column; align-items: center; gap: 5px; width: 100%; margin-bottom: 20px; }
-    .and { font-size: 1.5rem; margin: 5px 0; display: block; }
-    .name-group { display: block; text-align: center; width: 100%; }
-    .hero-image-wrapper { width: 240px; height: 340px; }
-    #tiktok-chat-container { width: 85%; bottom: 80px; }
-    .footer-overlay h2 { font-size: 3.5rem; }
-}
-@media (min-width: 769px) {
-    .main-content { max-width: 900px; }
-    .main-title { flex-direction: row; flex-wrap: nowrap; gap: 20px; font-size: 4.5rem; }
-    .hero-image-wrapper { width: 350px; height: 480px; }
-    .masonry-grid { column-count: 3; }
+@media(max-width: 480px) { .main-title { font-size: 2.8rem !important; flex-direction: column; align-items: center; gap: 5px; width: 100%; margin-bottom: 20px; } .and { font-size: 1.5rem; margin: 5px 0; display: block; } .name-group { display: block; text-align: center; width: 100%; } .hero-image-wrapper { width: 240px; height: 340px; } #tiktok-chat-container { width: 85%; bottom: 80px; } .footer-overlay h2 { font-size: 3.5rem; } }
+@media (min-width: 769px) { .main-content { max-width: 900px; } .main-title { flex-direction: row; flex-wrap: nowrap; gap: 20px; font-size: 4.5rem; } .hero-image-wrapper { width: 350px; height: 480px; } .masonry-grid { column-count: 3; } }
+.success-msg {
+    font-family: var(--font-script); /* Dùng font viết tay cho tình cảm */
+    font-size: 2rem;
+    color: var(--primary);
+    text-align: center;
+    width: 100%;
+    animation: slideUp 1s ease-out;
+    text-shadow: 1px 1px 0 #fff;
 }

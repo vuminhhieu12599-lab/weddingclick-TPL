@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     
-    // --- 1. MỞ PHONG BÌ (ENVELOPE OPEN) ---
+    // --- 1. MỞ PHONG BÌ ---
     window.openEnvelope = function() {
         const wrapper = document.getElementById('envelope-wrapper');
         const intro = document.getElementById('intro-screen');
@@ -11,27 +11,44 @@ document.addEventListener("DOMContentLoaded", function() {
 
         wrapper.classList.add('open');
 
-        // Bật nhạc
         if(bgMusic) {
             bgMusic.play().catch(e => console.log("Audio auto-play blocked"));
             musicBtn.classList.remove('hidden');
             musicBtn.innerHTML = '<i class="fa-solid fa-compact-disc fa-spin"></i>';
         }
 
-        // Thời gian chờ hoàn hảo (2.5 giây)
         setTimeout(() => {
             intro.classList.add('fade-out');
             main.classList.remove('hidden');
-            
-            if(liveBar) setTimeout(() => liveBar.classList.remove('hidden-bar-init'), 500);
-            
+            setTimeout(() => { main.style.opacity = 1; }, 50);
+            if(liveBar) setTimeout(() => liveBar.classList.remove('hidden-bar-init'), 1000);
             setTimeout(() => { intro.style.display = 'none'; }, 1500);
-            
-        }, 2500);
+        }, 2200); 
     }
 
-    // --- CÁC PHẦN DƯỚI GIỮ NGUYÊN ---
+    // --- 2. HIỆU ỨNG SCROLL ---
+    const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('anim-active');
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.anim-up, .anim-down, .anim-left, .anim-right, .anim-zoom, .anim-blur').forEach(el => scrollObserver.observe(el));
+
+    // --- 3. LOGIC HIỆN CHAT ---
     const chatContainer = document.getElementById('tiktok-chat-container');
+    window.addEventListener('scroll', () => {
+        if (!chatContainer) return;
+        if (window.scrollY > 300) {
+            chatContainer.classList.add('chat-visible');
+        } else {
+            chatContainer.classList.remove('chat-visible');
+        }
+    });
+
+    // --- 4. CHAT FAKE & TIM BAY ---
     const fakeWishes = [
         { name: "Minh Tuấn", msg: "Chúc hai bạn trăm năm hạnh phúc! ❤️" },
         { name: "Thu Hà", msg: "Cô dâu xinh quá, chú rể bảnh trai 🥰" },
@@ -46,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
         div.classList.add('chat-item');
         div.innerHTML = `<span class="chat-name">${name}:</span> ${msg}`;
         chatContainer.appendChild(div);
-        if (chatContainer.children.length > 6) chatContainer.removeChild(chatContainer.children[0]);
+        if (chatContainer.children.length > 5) chatContainer.removeChild(chatContainer.children[0]);
     }
     function autoRunChat() {
         const r = fakeWishes[Math.floor(Math.random() * fakeWishes.length)];
@@ -61,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const icons = ['❤️', '💖', '🥰', '😍', '🎉', '💍', '🥂'];
         heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
         heart.style.right = (15 + Math.random() * 30) + 'px';
-        heart.style.fontSize = (20 + Math.random() * 20) + 'px';
+        heart.style.fontSize = (15 + Math.random() * 20) + 'px';
         heart.style.animationDuration = (2 + Math.random() * 2) + 's';
         heartContainer.appendChild(heart);
         setTimeout(() => { heart.remove(); }, 4000);
@@ -91,11 +108,10 @@ document.addEventListener("DOMContentLoaded", function() {
         if(show) {
             bar.classList.remove('hide-down');
             reopenBtn.classList.add('hidden');
-            chatBox.classList.remove('hidden-chat'); 
+            if(window.scrollY > 300) chatBox.classList.add('chat-visible');
         } else {
             bar.classList.add('hide-down');
             reopenBtn.classList.remove('hidden');
-            chatBox.classList.add('hidden-chat'); 
         }
     }
 
@@ -107,23 +123,37 @@ document.addEventListener("DOMContentLoaded", function() {
         if(fn) fn.value = gName;
     }
 
-    const observer = new IntersectionObserver(es => es.forEach(e => {
-        if(e.isIntersecting) e.target.classList.add('anim-active');
-    }), {threshold: 0.1});
-    document.querySelectorAll('.anim-up, .anim-zoom, .anim-blur').forEach(el => observer.observe(el));
-
-    const wedDate = new Date("Jan 20, 2026 08:00:00").getTime();
-    setInterval(() => {
+    // --- 5. BỘ ĐẾM NGƯỢC THÔNG MINH ---
+    // Ngày cưới: 30/01/2026 08:00
+    const wedDate = new Date("Jan 30, 2026 08:00:00").getTime();
+    
+    // Lưu ID của interval để có thể dừng lại
+    const countdownInterval = setInterval(() => {
         const now = new Date().getTime();
-        const d = wedDate - now;
-        const days = Math.floor(d / (1000*60*60*24));
-        const hours = Math.floor((d % (1000*60*60*24)) / (1000*60*60));
-        const mins = Math.floor((d % (1000*60*60)) / (1000*60));
-        const secs = Math.floor((d % (1000*60)) / 1000);
-        document.getElementById("days").innerText = days<10?"0"+days:days;
-        document.getElementById("hours").innerText = hours<10?"0"+hours:hours;
-        document.getElementById("minutes").innerText = mins<10?"0"+mins:mins;
-        document.getElementById("seconds").innerText = secs<10?"0"+secs:secs;
+        const distance = wedDate - now;
+
+        const box = document.getElementById("countdown-box");
+
+        // TRƯỜNG HỢP 1: Đã qua giờ cưới
+        if (distance < 0) {
+            clearInterval(countdownInterval); // Dừng đếm
+            // Thay thế toàn bộ ô số bằng dòng chữ
+            box.innerHTML = '<div class="success-msg">Đám cưới đã diễn ra thành công tốt đẹp! ❤️</div>';
+            return;
+        }
+
+        // TRƯỜNG HỢP 2: Chưa đến giờ (Đếm ngược)
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        // Hiển thị số nguyên bản (không thêm số 0)
+        document.getElementById("days").innerText = days;
+        document.getElementById("hours").innerText = hours;
+        document.getElementById("minutes").innerText = minutes;
+        document.getElementById("seconds").innerText = seconds;
+
     }, 1000);
 
     const mBtn = document.getElementById('musicBtn');

@@ -1,40 +1,41 @@
-// 1. KHỞI TẠO AOS (Hiệu ứng khi cuộn)
+// 1. KHỞI TẠO AOS
 AOS.init({
-    duration: 1200, // Thời gian hiệu ứng 1.2s
-    once: false,    // Lặp lại khi cuộn lên xuống
+    duration: 1000, 
+    once: false,
+    offset: 50,
 });
 
-// 2. TỰ ĐỘNG MỞ RÈM KHI TẢI TRANG
+// 2. TỰ ĐỘNG MỞ MÂY
 window.onload = function() {
     const curtain = document.getElementById('curtain-overlay');
     const music = document.getElementById('bg-music');
     const musicIcon = document.querySelector('.music-control');
     
-    // Đợi 300ms (rất nhanh) để trang ổn định rồi mở
+    // Đợi 500ms cho trang load xong hẳn mới bắt đầu
     setTimeout(() => {
-        // Thêm class này để kích hoạt CSS: Nền trong suốt + Mây trôi
         curtain.classList.add('open-curtain');
         
-        // Thử phát nhạc tự động
+        // Thử phát nhạc
         music.play().then(() => {
             musicIcon.classList.add('music-playing');
         }).catch(() => {
-            console.log("Trình duyệt chặn nhạc tự động, cần click thủ công");
+            console.log("Cần chạm để phát nhạc");
         });
 
-        // Sau 3 giây (khi mây đã trôi khuất), ẩn hoàn toàn div rèm
+        // Ẩn rèm hoàn toàn sau 4 giây
         setTimeout(() => {
             curtain.style.display = 'none';
-        }, 3000);
+            // QUAN TRỌNG: Làm mới lại tính toán vị trí hiệu ứng sau khi rèm tắt
+            AOS.refresh(); 
+        }, 4000);
         
-    }, 300);
+    }, 500);
 };
 
-// 3. NÚT NHẠC
+// ... Các phần code khác (Toggle nhạc, Popup...) giữ nguyên không đổi ...
 function toggleMusic() {
     const music = document.getElementById('bg-music');
     const musicIcon = document.querySelector('.music-control');
-    
     if (music.paused) {
         music.play();
         musicIcon.classList.add('music-playing');
@@ -44,50 +45,23 @@ function toggleMusic() {
     }
 }
 
-// 4. LOGIC POPUP (MODAL)
-function openGift() {
-    document.getElementById('gift-modal').style.display = 'flex';
-}
+function openGift() { document.getElementById('gift-modal').style.display = 'flex'; }
+function openRSVP() { document.getElementById('rsvp-modal').style.display = 'flex'; }
+function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+window.onclick = function(e) { if(e.target.classList.contains('modal')) e.target.style.display="none"; }
 
-function openRSVP() {
-    document.getElementById('rsvp-modal').style.display = 'flex';
-}
-
-function closeModal(id) {
-    document.getElementById(id).style.display = 'none';
-}
-
-// Click ra ngoài thì đóng popup
-window.onclick = function(e) {
-    if (e.target.classList.contains('modal')) {
-        e.target.style.display = "none";
-    }
-}
-
-// 5. COPY SỐ TÀI KHOẢN
 function copyBankNumber(txt) {
-    navigator.clipboard.writeText(txt).then(() => {
-        alert("Đã sao chép: " + txt);
-    }).catch(() => {
-        alert("Lỗi copy, vui lòng nhập tay: " + txt);
-    });
+    navigator.clipboard.writeText(txt).then(() => alert("Đã sao chép: " + txt));
 }
 
-// 6. GỬI LỜI CHÚC (DEMO)
 function submitRSVP(e) {
     e.preventDefault();
     const btn = e.target.querySelector('button');
-    const originalText = btn.innerText;
-    
     btn.innerText = "Đang gửi...";
-    btn.disabled = true;
-    
-    // Giả lập gửi mất 1.5s
     setTimeout(() => {
-        alert("Cảm ơn! Lời chúc của bạn đã được gửi đi.");
+        alert("Cảm ơn! Lời chúc đã được gửi.");
         closeModal('rsvp-modal');
+        btn.innerText = "Gửi đi";
         e.target.reset();
-        btn.innerText = originalText;
-        btn.disabled = false;
     }, 1500);
 }

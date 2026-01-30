@@ -1,177 +1,196 @@
 /* --- CÀI ĐẶT CHUNG --- */
 :root {
-    --primary: #d45d79;  /* Màu chủ đạo */
-    --text: #444;        /* Màu chữ */
-    --font-art: 'Dancing Script', cursive;  /* Font nghệ thuật */
-    --font-text: 'Montserrat', sans-serif;  /* Font rõ ràng */
+    --primary: #d45d79;
+    --primary-light: #ffeef2;
+    --text: #333;
+    --font-main: 'Nunito', sans-serif; /* Font tròn, dễ đọc trên mobile */
+    --font-sig: 'Pinyon Script', cursive; /* Font viết tay sang trọng */
 }
 
 * { box-sizing: border-box; }
-body { margin: 0; padding: 0; font-family: var(--font-text); background: #fff; overflow-x: hidden; color: var(--text); }
-
-/* --- 1. HIỆU ỨNG RÈM MÂY (FIX LỖI MÀN HÌNH HỒNG) --- */
-#curtain-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 9999; display: flex; 
-    
-    /* Màu nền ban đầu che kín (Hồng nhạt) */
-    background-color: #fff0f3; 
-    
-    /* Hiệu ứng chuyển màu nền sang trong suốt trong 1.5 giây */
-    transition: background-color 1.5s ease-out; 
-    pointer-events: none; /* Cho phép click xuyên qua khi mờ */
+body { 
+    margin: 0; padding: 0; 
+    font-family: var(--font-main); 
+    background: #fff; 
+    color: var(--text);
+    overflow-x: hidden; 
+    font-size: 16px; /* Base size cho mobile */
 }
 
+/* --- RÈM MÂY (CHẬM LẠI & TRONG SUỐT) --- */
+#curtain-overlay {
+    position: fixed; inset: 0; z-index: 9999; display: flex; 
+    background-color: #ffeef2; 
+    transition: background-color 2s ease-out; /* Mờ nền từ từ */
+    pointer-events: none;
+}
 .curtain-panel {
-    width: 60%; /* Rộng hơn 50% để chồng khít lên nhau */
-    height: 100%; position: absolute; top: 0;
-    background-repeat: no-repeat;
-    background-size: cover; /* Ảnh mây phủ kín */
-    
-    /* Mây trôi chậm trong 3s */
-    transition: transform 3s cubic-bezier(0.25, 1, 0.5, 1); 
+    width: 60%; height: 100%; position: absolute; top: 0;
+    background-size: cover; background-repeat: no-repeat;
+    /* CHẬM LẠI: Tăng lên 4s */
+    transition: transform 4s cubic-bezier(0.2, 1, 0.3, 1); 
     z-index: 10000;
 }
-
-.left-panel { 
-    left: 0; 
-    background-image: url('images/cloud-left.png'); /* Ảnh mây trái */
-    background-position: right center; 
-}
-
-.right-panel { 
-    right: 0; 
-    background-image: url('images/cloud-right.png'); /* Ảnh mây phải */
-    background-position: left center; 
-}
+.left-panel { left: 0; background-image: url('images/cloud-left.png'); background-position: right center; }
+.right-panel { right: 0; background-image: url('images/cloud-right.png'); background-position: left center; }
 
 .loading-text {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    z-index: 10001; color: var(--primary); font-weight: 600; 
-    transition: opacity 0.5s;
+    color: var(--primary); font-family: var(--font-sig); font-size: 1.5rem;
+    transition: opacity 0.5s; z-index: 10001;
 }
 
-/* --- KHI KÍCH HOẠT MỞ (JS thêm class này) --- */
-.open-curtain {
-    /* QUAN TRỌNG: Biến nền thành trong suốt ngay lập tức */
-    background-color: transparent !important; 
-}
-
-/* Đẩy mây sang 2 bên xa hơn để thoáng màn hình */
+.open-curtain { background-color: transparent !important; }
 .open-curtain .left-panel { transform: translateX(-110%); }
 .open-curtain .right-panel { transform: translateX(110%); }
 .open-curtain .loading-text { opacity: 0; }
 
+/* --- STYLE TIỆN ÍCH --- */
+.section-container { padding: 50px 20px; text-align: center; max-width: 600px; margin: 0 auto; overflow: hidden; }
+.font-signature { font-family: var(--font-sig); font-weight: 400; }
+.uppercase { text-transform: uppercase; letter-spacing: 1px; font-weight: 700; font-size: 0.9rem; color: #777; }
 
-/* --- 2. GIAO DIỆN CHÍNH --- */
-.container { padding: 40px 20px; text-align: center; max-width: 800px; margin: 0 auto; }
-.hero-img { width: 100%; border-radius: 15px; margin-top: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-
-/* Class Font tiện ích */
-.font-art { font-family: var(--font-art); }
-.font-text { font-family: var(--font-text); }
-.uppercase { text-transform: uppercase; letter-spacing: 1px; }
-
-/* Phần Intro Header */
-h1.main-names { font-size: 3.5rem; color: var(--primary); margin: 15px 0; line-height: 1.1; }
-.sub-title { color: #888; letter-spacing: 3px; margin-bottom: 5px; text-transform: uppercase; font-size: 0.9rem; }
-.wedding-date { font-size: 1.4rem; font-weight: 700; color: var(--text); display: inline-block; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 8px 30px; margin-top: 10px; }
-
-/* Phần Gia Đình - ĐÃ SỬA FONT TO RÕ */
-.family-section { display: flex; flex-direction: column; gap: 30px; margin-top: 30px; }
-.family-box h3 { font-size: 1rem; margin-bottom: 10px; font-weight: 500; }
-.family-box p { margin: 5px 0; font-size: 1rem; }
-
-/* Tên dâu rể trong phần gia đình: Chữ in hoa, đậm, font hiện đại */
-.groom-name, .bride-name {
-    font-size: 2.2rem; 
-    font-weight: 800; /* Rất đậm */
-    color: var(--primary);
-    margin-top: 15px;
-    line-height: 1.2;
+/* --- HEADER / INTRO --- */
+.sub-title { letter-spacing: 4px; color: #999; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 5px; }
+.main-names { 
+    font-size: 3.8rem; color: var(--primary); line-height: 1.1; margin: 10px 0; 
+    text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
 }
+.main-names span { font-size: 2rem; color: #aaa; font-family: var(--font-main); vertical-align: middle; }
 
-.family-divider i { color: #ff9a9e; font-size: 2rem; animation: beat 1.2s infinite; margin: 10px 0; }
-@keyframes beat { 0%,100%{transform:scale(1);} 50%{transform:scale(1.2);} }
+.wedding-date { 
+    font-size: 1.2rem; color: #555; margin: 15px 0; padding: 5px 0; 
+    border-top: 1px solid #eee; border-bottom: 1px solid #eee; display: inline-block;
+}
+.wedding-date span { font-weight: 700; color: var(--primary); margin: 0 5px; }
 
-/* Thiệp Mời Event */
-.event-card { border: 1px dashed var(--primary); padding: 30px 20px; border-radius: 15px; background: #fff5f7; margin-top: 20px; }
-.highlight-text { color: var(--primary); font-size: 1.3rem; margin-bottom: 20px; font-weight: 700; }
-.info-group p { margin: 10px 0; font-size: 1.05rem; }
-.big-date { font-size: 2.5rem; font-weight: 800; color: var(--primary); margin: 15px 0 !important; }
-.lunar-date { font-style: italic; color: #777; font-size: 0.9rem; }
+.img-frame { 
+    padding: 10px; background: #fff; border: 1px solid #eee; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08); transform: rotate(-2deg); margin: 20px 0; 
+}
+.hero-img { width: 100%; display: block; }
+.quote { font-family: var(--font-sig); font-size: 1.6rem; color: #888; margin-top: 15px; }
+
+/* --- GIA ĐÌNH (Mobile Optimized) --- */
+.family-section { display: flex; flex-direction: column; gap: 40px; }
+.family-box { position: relative; }
+.family-box p { margin: 5px 0; font-size: 1.05rem; }
+.groom-bride-label { 
+    display: inline-block; background: var(--primary-light); color: var(--primary); 
+    padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-top: 15px; 
+}
+.name-highlight { font-size: 3rem; color: var(--primary); margin: 5px 0 0 0; line-height: 1.2; }
+.family-divider { color: #ffbbc6; font-size: 1.5rem; animation: heartBeat 1.5s infinite; }
+
+/* --- TIỆC CƯỚI --- */
+.event-card { 
+    background: #fff; border-radius: 20px; padding: 30px 20px; 
+    box-shadow: 0 15px 40px rgba(212, 93, 121, 0.15); border: 1px solid #fff0f5;
+}
+.highlight-text { color: var(--primary); font-size: 1.2rem; margin-bottom: 25px; }
+
+.event-details { 
+    display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 20px; 
+}
+.detail-item { font-weight: 600; color: #555; font-size: 1rem; }
+.main-date { 
+    background: var(--primary); color: #fff; padding: 10px 15px; 
+    border-radius: 10px; text-align: center; box-shadow: 0 5px 15px rgba(212, 93, 121, 0.4);
+}
+.main-date .day { font-size: 2.5rem; font-weight: 800; line-height: 1; }
+.main-date .month-year { font-size: 0.8rem; opacity: 0.9; }
+
+.lunar-date { font-style: italic; color: #888; font-size: 0.9rem; margin-bottom: 5px; }
+.location-text { font-weight: 700; font-size: 1.1rem; color: #333; margin-bottom: 20px; }
 
 /* Buttons */
-.action-buttons { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; }
+.action-buttons { display: flex; flex-direction: column; gap: 12px; }
 .btn-primary, .btn-secondary, .btn-submit {
-    padding: 15px; border: none; border-radius: 50px; font-weight: 600; cursor: pointer; width: 100%; font-size: 1rem; transition: 0.3s;
+    width: 100%; padding: 14px; border: none; border-radius: 50px; 
+    font-weight: 700; font-size: 1rem; cursor: pointer; transition: 0.3s;
 }
-.btn-primary, .btn-submit { background: linear-gradient(45deg, var(--primary), #ff9a9e); color: #fff; box-shadow: 0 4px 10px rgba(212, 93, 121, 0.3); }
+.btn-primary, .btn-submit { 
+    background: linear-gradient(135deg, #d45d79, #ff9a9e); color: #fff; 
+    box-shadow: 0 8px 20px rgba(212, 93, 121, 0.3);
+}
 .btn-secondary { background: #fff; border: 2px solid var(--primary); color: var(--primary); }
+.pulse-btn { animation: pulse 2s infinite; }
 
-/* Lịch & Map */
-.calendar-img { max-width: 100%; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-.map-box { border-radius: 15px; overflow: hidden; border: 5px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-.map-link { text-decoration: none; color: var(--primary); font-weight: 600; display: inline-block; margin-top: 10px; }
+/* --- LỊCH (CALENDAR) CODE --- */
+.calendar-section { background: #fafafa; }
+.section-title { font-size: 3rem; color: var(--primary); margin-bottom: 25px; }
+.calendar-wrapper { 
+    background: #fff; border-radius: 15px; padding: 20px; 
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05); margin-bottom: 20px;
+}
+.calendar-header { font-weight: 700; font-size: 1.2rem; color: var(--primary); margin-bottom: 15px; text-transform: uppercase; }
+.calendar-grid { 
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; 
+    font-size: 0.9rem; font-weight: 600;
+}
+.day-name { color: #999; font-size: 0.8rem; margin-bottom: 10px; }
+.day-name.cn, .date.cn { color: #d45d79; } /* Chủ nhật màu hồng */
+.date { 
+    height: 35px; display: flex; align-items: center; justify-content: center; 
+    border-radius: 50%; position: relative; 
+}
+.event-day { border: 1px solid var(--primary); color: var(--primary); }
+/* Ngày 23 đặc biệt */
+.active-date { 
+    background: var(--primary); color: #fff !important; 
+    box-shadow: 0 4px 10px rgba(212, 93, 121, 0.4);
+}
+.heart-beat { 
+    position: absolute; top: -8px; right: -5px; 
+    color: #ff0000; font-size: 12px; 
+    animation: heartBeat 1s infinite; 
+    background: #fff; border-radius: 50%; padding: 2px;
+}
 
-/* Album */
-.title-album { font-size: 3rem; color: var(--primary); margin-bottom: 30px; margin-top: 40px; }
+/* Map */
+.map-box { border-radius: 15px; overflow: hidden; border: 4px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.map-link { display: inline-block; margin-top: 15px; color: var(--primary); text-decoration: none; font-weight: 700; }
+
+/* --- ALBUM --- */
 .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.gallery-grid img { width: 100%; border-radius: 8px; aspect-ratio: 1/1; object-fit: cover; }
+.gallery-grid img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; }
 
-/* Footer */
+/* --- FOOTER --- */
 .footer-thankyou { 
-    height: 300px; background: url('images/footer-bg.jpg') center/cover; 
-    position: relative; display: flex; align-items: center; justify-content: center; color: #fff; margin-top: 50px;
+    height: 250px; background: url('images/footer-bg.jpg') center/cover; position: relative; 
+    display: flex; align-items: center; justify-content: center; color: #fff;
 }
-.overlay-footer { position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
+.overlay-footer { position: absolute; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(2px); }
 .content-footer { position: relative; z-index: 2; text-align: center; }
-.content-footer h1 { font-size: 4rem; margin: 0; }
+.content-footer h1 { font-size: 3.5rem; margin: 0; }
 
-/* --- 3. POPUP MODAL (FIX GIAO DIỆN ĐẸP) --- */
-.modal {
-    display: none; /* Mặc định ẩn */
-    position: fixed; z-index: 20000; left: 0; top: 0; width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.8); align-items: center; justify-content: center;
-}
-.modal-content {
-    background-color: #fff; padding: 30px; border-radius: 20px; width: 90%; max-width: 400px;
-    position: relative; text-align: center; animation: zoomIn 0.3s;
-}
-@keyframes zoomIn { from{transform:scale(0.7); opacity:0;} to{transform:scale(1); opacity:1;} }
-
-.close-btn { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; color: #aaa; }
-.header-modal { color: var(--primary); margin: 0 0 20px 0; font-size: 1.4rem; border-bottom: 1px dashed #eee; padding-bottom: 15px; }
-
-.qr-img { width: 70%; margin: 0 auto 15px; display: block; border-radius: 10px; border: 1px solid #eee; }
-.bank-info { margin: 5px 0; font-size: 1rem; color: #333; }
-
-.input-field {
-    width: 100%; padding: 12px; margin: 10px 0; display: block;
-    border: 1px solid #ccc; border-radius: 8px; font-family: var(--font-text); font-size: 1rem;
-}
-.input-field:focus { border-color: var(--primary); outline: none; background: #fffafa; }
-
-.modal-actions { display: flex; gap: 10px; margin-top: 20px; justify-content: center; }
-.modal-actions button, .modal-actions a {
-    padding: 10px 20px; border: 1px solid #ddd; background: #f8f8f8; border-radius: 8px;
-    color: #333; text-decoration: none; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 5px;
-}
+/* --- MODAL (POPUP) --- */
+.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 20000; align-items: center; justify-content: center; padding: 20px; }
+.modal-content { background: #fff; width: 100%; max-width: 350px; border-radius: 20px; padding: 25px; text-align: center; position: relative; animation: zoomIn 0.3s; }
+.close-btn { position: absolute; top: 10px; right: 15px; font-size: 30px; cursor: pointer; color: #ccc; }
+.qr-img { width: 100%; max-width: 200px; margin: 10px 0; border: 1px solid #eee; border-radius: 10px; }
+.input-field { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 10px; font-family: inherit; }
+.modal-actions { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
+.modal-actions button, .modal-actions a { padding: 8px 15px; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; text-decoration: none; color: #333; font-size: 0.9rem; cursor: pointer; }
 
 /* Music Button */
-.music-control {
-    position: fixed; bottom: 20px; left: 20px; width: 45px; height: 45px;
-    background: var(--primary); color: #fff; border-radius: 50%;
-    display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 15000;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+.music-control { 
+    position: fixed; bottom: 20px; left: 20px; width: 45px; height: 45px; 
+    background: #fff; color: var(--primary); border: 2px solid var(--primary);
+    border-radius: 50%; display: flex; justify-content: center; align-items: center; 
+    z-index: 15000; box-shadow: 0 5px 15px rgba(0,0,0,0.1); font-size: 1.2rem;
 }
-.music-playing { animation: spin 3s linear infinite; }
-@keyframes spin { 100% { transform: rotate(360deg); } }
+.music-playing { animation: spin 4s linear infinite; background: var(--primary); color: #fff; }
+
+/* Animations Keyframes */
+@keyframes heartBeat { 0%{transform:scale(1);} 25%{transform:scale(1.2);} 50%{transform:scale(1);} 75%{transform:scale(1.2);} 100%{transform:scale(1);} }
+@keyframes pulse { 0%{transform:scale(1);} 50%{transform:scale(1.05);} 100%{transform:scale(1);} }
+@keyframes spin { 100% {transform: rotate(360deg);} }
+@keyframes zoomIn { from{opacity:0; transform:scale(0.8);} to{opacity:1; transform:scale(1);} }
 
 /* PC Responsive */
 @media (min-width: 768px) {
-    .container { padding: 60px 20px; }
-    .family-section, .action-buttons { flex-direction: row; justify-content: center; gap: 30px; }
-    .gallery-grid { grid-template-columns: repeat(4, 1fr); gap: 15px; }
-    .btn-primary, .btn-secondary { width: auto; padding: 15px 40px; }
+    .family-section, .action-buttons { flex-direction: row; justify-content: center; gap: 40px; }
+    .gallery-grid { grid-template-columns: repeat(4, 1fr); }
+    .btn-primary, .btn-secondary { width: auto; padding: 14px 50px; }
 }

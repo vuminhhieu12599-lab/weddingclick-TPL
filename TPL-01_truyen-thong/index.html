@@ -14,19 +14,14 @@
         <div class="intro-bg"></div>
         <div class="envelope-wrapper" id="envelope-wrapper">
             <div class="envelope">
-                
                 <div class="envelope-inner-bg"></div>
-
                 <div class="reveal-photo-container">
-                    <img src="images/thank-you.jpg" alt="Wedding Reveal">
+                    <img src="images/anh_dau_tien.jpg" alt="Wedding Reveal">
                 </div>
-                
                 <div class="envelope-left"></div>
                 <div class="envelope-right"></div>
                 <div class="envelope-front"></div>
-                
                 <div class="envelope-flap"></div>
-                
                 <div class="wax-seal" onclick="openEnvelope()">
                     <i class="fa-solid fa-heart"></i>
                 </div>
@@ -43,24 +38,30 @@
         <div class="blob blob-3"></div>
     </div>
 
-    <main class="main-content hidden" id="main-content">
+    <main class="main-content hidden" id="main-content" style="opacity: 0;">
+        
         <div id="tiktok-chat-container"></div>
+
         <section class="hero-section text-center">
-            <p class="top-tag anim-blur">LỄ THÀNH HÔN</p>
-            <h1 class="main-title anim-blur delay-1">
+            <p class="top-tag anim-down">LỄ THÀNH HÔN</p>
+            
+            <h1 class="main-title anim-zoom delay-1">
                 <span class="name-group">Anh Tú</span>
                 <span class="and">&</span>
                 <span class="name-group">Diệu Nhi</span>
             </h1>
-            <div class="hero-image-wrapper anim-zoom delay-2">
+            
+            <div class="hero-image-wrapper anim-up delay-2">
                 <img src="images/anh_dau_tien.jpg" alt="Wedding Cover">
             </div>
-            <div class="new-date-display anim-blur delay-2">
+
+            <div class="new-date-display anim-up delay-2">
                 <div class="nd-month">THÁNG 01</div>
                 <div class="nd-day">30</div>
                 <div class="nd-year">NĂM 2026</div>
             </div>
-            <div class="nd-time anim-blur delay-2">CHỦ NHẬT — 08:00 SÁNG</div>
+            <div class="nd-time anim-up delay-3">CHỦ NHẬT — 08:00 SÁNG</div>
+            
             <div id="countdown-box" class="anim-up delay-3">
                 <div class="time-item"><span id="days">00</span><small>Ngày</small></div>
                 <div class="time-item"><span id="hours">00</span><small>Giờ</small></div>
@@ -72,14 +73,14 @@
         <section class="content-card anim-up">
             <h2 class="card-title">GIA ĐÌNH HAI BÊN</h2>
             <div class="family-flex">
-                <div class="family-col">
+                <div class="family-col anim-left delay-1">
                     <h3>NHÀ TRAI</h3>
                     <div class="f-icon"><i class="fa-solid fa-mars-double"></i></div>
                     <p>Ông: Phùng Đức Chung</p>
                     <p>Bà: Nguyễn Thị Kim Thúy</p>
                 </div>
-                <div class="divider-vertical"></div>
-                <div class="family-col">
+                <div class="divider-vertical anim-zoom"></div>
+                <div class="family-col anim-right delay-1">
                     <h3>NHÀ GÁI</h3>
                     <div class="f-icon"><i class="fa-solid fa-venus-double"></i></div>
                     <p>Ông: Phạm Văn Tấn</p>
@@ -90,7 +91,7 @@
 
         <section class="content-card anim-up">
             <h2 class="card-title">TIỆC CƯỚI ĐƯỢC TỔ CHỨC TẠI</h2>
-            <div class="event-box">
+            <div class="event-box anim-zoom delay-1">
                 <div class="event-loc-icon"><i class="fa-solid fa-house-chimney-heart"></i></div>
                 <h3>TƯ GIA NHÀ TRAI</h3>
                 <p>Khu 2 Đồng Trung, xã Tu Vũ, Phú Thọ</p>
@@ -103,25 +104,25 @@
         </section>
 
         <section class="content-card anim-up">
-            <div class="calendar-header"><span class="cal-month">Tháng 1</span> <span class="cal-year">2026</span></div>
-            <div class="calendar-wrapper">
+            <div class="calendar-header anim-down"><span class="cal-month">Tháng 1</span> <span class="cal-year">2026</span></div>
+            <div class="calendar-wrapper anim-up delay-1">
                 <table>
                     <thead><tr><th>CN</th><th>T2</th><th>T3</th><th>T4</th><th>T5</th><th>T6</th><th>T7</th></tr></thead>
                     <tbody>
                         <tr><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
                         <tr><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
                         <tr><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
-                        <tr><td>19</td><td class="special-date"><div class="heart-beat"><i class="fa-solid fa-heart"></i><span>20</span></div></td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
-                        <tr><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td></tr>
+                        <tr><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
+                        <tr><td>26</td><td>27</td><td>28</td><td>29</td><td class="special-date"><div class="heart-beat"><i class="fa-solid fa-heart"></i><span>30</span></div></td><td>31</td><td></td></tr>
                     </tbody>
                 </table>
             </div>
-            <p class="lunar-note">(Tức ngày 02 tháng Chạp năm Ất Tỵ)</p>
+            <p class="lunar-note anim-up delay-2">(Tức ngày 12 tháng Chạp năm Ất Tỵ)</p>
         </section>
 
         <section class="content-card anim-up">
             <h2 class="card-title">GỬI LỜI CHÚC</h2>
-            <form id="wedding-rsvp-form">
+            <form id="wedding-rsvp-form" class="anim-up delay-1">
                 <input type="text" id="form-name" placeholder="Tên của bạn..." required>
                 <textarea rows="3" placeholder="Viết lời chúc..."></textarea>
                 <select><option value="">Bạn sẽ tham dự chứ?</option><option value="yes">Sẽ tham dự</option><option value="no">Rất tiếc, mình bận</option></select>
@@ -129,26 +130,26 @@
             </form>
         </section>
         
-        <div class="button-group anim-up">
+        <div class="button-group anim-zoom">
              <button id="btn-show-qr" class="btn-big-qr" onclick="openQR()"><i class="fa-solid fa-gift"></i> Mừng Cưới</button>
         </div>
 
-        <section class="album-section anim-up">
-            <h2 class="section-heading">Album Ảnh Cưới</h2>
-            <p class="album-sub">Chạm vào ảnh để xem rõ hơn</p>
+        <section class="album-section">
+            <h2 class="section-heading anim-down">Album Ảnh Cưới</h2>
+            <p class="album-sub anim-up">Chạm vào ảnh để xem rõ hơn</p>
             <div class="masonry-grid">
-                <img src="images/album2.jpg" onclick="openLightbox(this)">
-                <img src="images/album3.jpg" onclick="openLightbox(this)">
-                <img src="images/album4.jpg" onclick="openLightbox(this)">
-                <img src="images/album5.jpg" onclick="openLightbox(this)">
-                <img src="images/album6.jpg" onclick="openLightbox(this)">
-                <img src="images/album7.jpg" onclick="openLightbox(this)">
+                <img src="images/album2.jpg" class="anim-left" onclick="openLightbox(this)">
+                <img src="images/album3.jpg" class="anim-right" onclick="openLightbox(this)">
+                <img src="images/album4.jpg" class="anim-left delay-1" onclick="openLightbox(this)">
+                <img src="images/album5.jpg" class="anim-right delay-1" onclick="openLightbox(this)">
+                <img src="images/album6.jpg" class="anim-left delay-2" onclick="openLightbox(this)">
+                <img src="images/album7.jpg" class="anim-right delay-2" onclick="openLightbox(this)">
             </div>
         </section>
 
         <footer class="footer-end anim-zoom">
             <img src="images/thank-you.jpg" class="footer-bg">
-            <div class="footer-overlay"><h2>Thank You</h2><p>Kiên & Ánh</p></div>
+            <div class="footer-overlay"><h2>Thank You</h2><p>Tú & Nhi</p></div>
         </footer>
         <div style="height: 100px;"></div>
     </main>
