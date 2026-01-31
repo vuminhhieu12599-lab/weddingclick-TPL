@@ -1,8 +1,7 @@
 /* =========================================
-   File: style.css (FIXED: Gate Delay, Heart Align, Soft Anim)
+   File: style.css (CORRECT SPEED: 1.7s & 1.9s)
    ========================================= */
 
-/* --- CÀI ĐẶT CHUNG --- */
 :root { 
     --primary-red: #b30000; 
     --gold: #eebb55; 
@@ -12,20 +11,29 @@
     --main-font: 'Quicksand', sans-serif; 
     --serif-font: 'Playfair Display', serif;
     
-    /* --- ANIMATION: Chậm hơn và điệu đà hơn (2.5s) --- */
-    --anim-speed: 2.5s;
+    /* --- [ĐÃ SỬA LẠI] TỐC ĐỘ CHUNG: 1.7s --- */
+    --anim-speed: 1.7s; 
     --anim-curve: cubic-bezier(0.37, 0, 0.63, 1);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { font-family: var(--main-font); background: var(--bg-cream); color: var(--text-dark); overflow-x: hidden; }
 
-/* 1. KHUNG CHÍNH (PC) */
+body { 
+    font-family: var(--main-font); 
+    background-color: var(--bg-cream); 
+    color: var(--text-dark); 
+    overflow-x: hidden; 
+}
+
+/* 1. KHUNG CHÍNH */
 .main-content { 
-    max-width: 480px; margin: 0 auto; background: #fff; position: relative; 
+    max-width: 480px; margin: 0 auto; position: relative; 
     padding: 0 40px 50px 40px; 
-    box-shadow: 0 0 20px rgba(0,0,0,0.05); z-index: 10; overflow: visible; 
+    box-shadow: 0 0 30px rgba(179, 0, 0, 0.1); 
+    z-index: 10; overflow: visible; 
+    background-color: #fff;
+    background-image: none; 
 }
 
 /* 2. VIỀN HOA VĂN */
@@ -33,7 +41,7 @@ body { font-family: var(--main-font); background: var(--bg-cream); color: var(--
 .pattern-left { left: 0; }
 .pattern-right { right: 0; transform: scaleX(-1); }
 
-/* 3. CỔNG CHỜ (FIXED: CHỮ HỦY ĐỨNG YÊN RỒI MẤT, CỬA TRƯỢT SAU) */
+/* 3. CỔNG CHỜ */
 #welcome-gate { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 15000; display: flex; transition: visibility 0s 4s; }
 
 .gate-panel { 
@@ -41,51 +49,58 @@ body { font-family: var(--main-font); background: var(--bg-cream); color: var(--
     background: var(--primary-red); 
     background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 10px); 
     
-    /* QUAN TRỌNG: Delay 1s để chờ chữ Hỷ biến mất rồi mới trượt */
-    transition: transform 2.5s cubic-bezier(0.2, 0, 0.2, 1); 
-    transition-delay: 1s; 
-    
+    /* --- [ĐÃ SỬA LẠI] TỐC ĐỘ MỞ RÈM: 1.9s --- */
+    transition: transform 1.9s cubic-bezier(0.2, 0, 0.2, 1); 
+    transition-delay: 1s; /* Chờ khóa biến mất xong mới mở */
     overflow: visible !important; 
 }
 .left-panel { left: 0; border-right: 1px solid rgba(0,0,0,0.1); z-index: 2; display: flex; justify-content: center; align-items: center; }
 .right-panel { right: 0; border-left: 1px solid rgba(0,0,0,0.1); z-index: 1; }
 
-/* LOGIC CHỮ HỶ (LOCK): Tự động mờ đi khi mở cửa */
-.gate-lock-container { 
-    position: absolute; top: 50%; right: -40px; transform: translateY(-50%); 
-    width: 80px; height: 80px; 
-    transition: opacity 0.8s ease; /* Mờ dần trong 0.8s */
-}
-/* Khi body có class open-gate, khóa sẽ mờ đi ngay lập tức */
-body.open-gate .gate-lock-container { opacity: 0; }
-
+.gate-lock-container { position: absolute; top: 50%; right: -40px; transform: translateY(-50%); width: 80px; height: 80px; transition: all 0.8s ease; }
+body.open-gate .gate-lock-container { opacity: 0; transform: translateY(-50%) scale(0.5); }
 .lock-circle { width: 100%; height: 100%; background: #b30000; border: 2px solid #eebb55; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
 .hy-symbol { font-size: 40px; color: #eebb55; }
-
-/* Khi mở cửa: Panel trượt đi (sau 1s delay) */
 body.open-gate .left-panel { transform: translateX(-100%); }
 body.open-gate .right-panel { transform: translateX(100%); }
 body.open-gate #welcome-gate { pointer-events: none; }
 
-/* 4. HERO SECTION */
+/* 4. HERO SECTION (KHOẢNG CÁCH SÁT HỌA TIẾT) */
 .text-center { text-align: center; }
 .fancy-font { font-family: var(--dancing-font); font-weight: 700; }
-.section-spacing { padding: 40px 0; }
-img { max-width: 100%; height: auto; display: block; }
-.hero-section { padding: 40px 0; }
-.sub-title { text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; margin-bottom: 10px; color: #666; }
 
-.main-title { 
-    font-size: 1.8rem; margin-bottom: 15px; line-height: 1.4; padding-top: 10px; white-space: nowrap; 
+.hero-section { 
+    padding-top: 40px;
+    padding-bottom: 10px; /* Vẫn giữ khoảng cách nhỏ để sát họa tiết */
 }
+
+.sub-title { text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; margin-bottom: 10px; color: #666; }
+.main-title { font-size: 1.8rem; margin-bottom: 15px; line-height: 1.4; padding-top: 10px; white-space: nowrap; }
 .and { color: var(--primary-red); }
 .hy-symbol-red { font-size: 50px; color: var(--primary-red); font-weight: bold; }
 .date-time { text-transform: uppercase; font-weight: 700; margin: 15px 0 5px; }
-.main-date { 
-    font-size: 2.2rem; font-family: var(--main-font); font-weight: 700; 
-    letter-spacing: 2px; margin-bottom: 20px; 
+.main-date { font-size: 2.2rem; font-family: var(--main-font); font-weight: 700; letter-spacing: 2px; margin-bottom: 20px; }
+.hero-image-frame { 
+    border: 6px solid var(--primary-red); padding: 4px; background: #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+    width: 80%; max-width: 320px; margin: 0 auto; aspect-ratio: 2/3; 
 }
-.hero-image-frame { border: 8px solid var(--primary-red); padding: 5px; background: #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+.hero-image-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+/* HỌA TIẾT SÁT ẢNH BÌA */
+.ornament-divider { 
+    margin: 5px auto 30px; /* Vẫn giữ margin top 5px */
+    width: 100%; 
+    text-align: center; 
+}
+.ornament-divider img {
+    width: 80%; max-width: 300px; height: auto; display: inline-block; opacity: 0.9;
+}
+
+/* Các phần khác */
+.section-spacing { padding: 40px 0; }
+.divider-ornament-top { margin: 0 auto 5px; width: 100%; text-align: center; }
+.divider-ornament-top img { width: 80%; max-width: 300px; height: auto; display: inline-block; opacity: 0.9; }
+.album-title { margin-bottom: 15px; font-size: 2rem; padding-top: 10px; text-align: center; }
 
 /* 5. GIA ĐÌNH & TIỆC */
 .family-grid { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 10px; }
@@ -117,58 +132,27 @@ img { max-width: 100%; height: auto; display: block; }
 .location-box h3 { font-size: 1.3rem; margin-bottom: 10px; font-weight: 700; }
 .btn-map-red { display: inline-block; padding: 8px 25px; background: #b30000; color: white; border-radius: 20px; text-decoration: none; font-weight: 700; margin-top: 10px; }
 
-/* 6. LỊCH (FIXED: CĂN GIỮA TUYỆT ĐỐI) */
+/* 6. LỊCH */
 .calendar-title { font-family: var(--main-font); font-weight: 700; text-transform: uppercase; margin-bottom: 20px; font-size: 1.5rem; }
-.calendar-wrapper { border: 1px solid var(--primary-red); border-radius: 15px; padding: 20px 5px; margin: 0 5px; background: #fff; }
+.calendar-wrapper { border: 4px double var(--primary-red); border-radius: 20px; padding: 25px 10px; margin: 0 5px; background: #fff; box-shadow: 0 10px 30px rgba(179, 0, 0, 0.1); position: relative;}
+.calendar-wrapper::before, .calendar-wrapper::after { content: "•"; color: var(--primary-red); font-size: 30px; line-height: 0; position: absolute; left: 50%; transform: translateX(-50%); }
+.calendar-wrapper::before { top: 10px; }
+.calendar-wrapper::after { bottom: 10px; }
 .calendar-table { width: 100%; border-collapse: collapse; }
-.calendar-table th { font-weight: 700; padding-bottom: 15px; font-size: 0.9rem; }
-
-/* Các ô lịch thường */
-.calendar-table td { 
-    text-align: center; vertical-align: middle; 
-    font-size: 1rem; color: #444; height: 45px; width: 14.28%; padding: 0; 
-    font-family: var(--main-font); font-weight: 600;
-}
-
-/* Kỹ thuật căn giữa mới: Dùng Position Absolute */
-.heart-date { 
-    width: 40px; height: 40px; 
-    /* Căn giữa tuyệt đối so với ô td */
-    position: absolute; 
-    top: 50%; left: 50%; 
-    transform: translate(-50%, -50%); 
-    display: flex; justify-content: center; align-items: center;
-}
-.heart-date i { 
-    font-size: 36px; color: var(--primary-red);
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1;
-}
-.heart-date span { 
-    position: relative; z-index: 2; color: #fff; font-weight: bold; 
-    font-size: 0.9rem; line-height: 1; padding-top: 3px; 
-    font-family: var(--main-font);
-}
-@keyframes heartBeat { 
-    0% { transform: scale(1) translate(-50%, -50%); } 
-    50% { transform: scale(1.1) translate(-45%, -45%); } 
-    100% { transform: scale(1) translate(-50%, -50%); } 
-}
+.calendar-table th { font-weight: 700; padding-bottom: 15px; font-size: 0.9rem; color: var(--primary-red); }
+.calendar-table td { text-align: center; vertical-align: middle; font-size: 1rem; color: #444; height: 45px; width: 14.28%; padding: 0; font-family: var(--main-font); font-weight: 600; }
+.heart-date { width: 40px; height: 40px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; justify-content: center; align-items: center; }
+.heart-date i { font-size: 36px; color: var(--primary-red); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1; }
+.heart-date span { position: relative; z-index: 2; color: #fff; font-weight: bold; font-size: 0.9rem; line-height: 1; padding-top: 3px; font-family: var(--main-font); }
+@keyframes heartBeat { 0% { transform: scale(1) translate(-50%, -50%); } 50% { transform: scale(1.1) translate(-45%, -45%); } 100% { transform: scale(1) translate(-50%, -50%); } }
 .heart-date i { animation: heartBeat 2s infinite ease-in-out; transform-origin: center center; }
 
-/* 7. RSVP (GIỮ NGUYÊN STYLE BO GÓC) */
+/* 7. RSVP */
 .rsvp-title-wrap { background: #fff; padding-bottom: 20px; }
 .rsvp-title { font-size: 2rem; margin: 0; }
-
-.rsvp-red-bg { 
-    background: var(--primary-red); 
-    border-radius: 15px; 
-    padding: 35px 25px; 
-    margin: 10px 0 30px 0; 
-    box-shadow: 0 10px 25px -5px rgba(179, 0, 0, 0.3);
-}
+.rsvp-red-bg { background: var(--primary-red); border-radius: 15px; padding: 35px 25px; margin: 10px 0 30px 0; box-shadow: 0 10px 25px -5px rgba(179, 0, 0, 0.3); }
 .rsvp-container { width: 100%; max-width: 400px; margin: 0 auto; }
 .form-control { width: 100%; padding: 12px; border: none; border-radius: 8px; margin-bottom: 15px; outline: none; font-family: var(--main-font); }
-
 .buttons-section { padding: 20px 0 40px; background: #fff; }
 .action-buttons-group { display: flex; flex-direction: column; align-items: center; gap: 15px; }
 .btn-custom { width: 100%; max-width: 250px; padding: 12px; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: 0.3s; }
@@ -190,9 +174,6 @@ img { max-width: 100%; height: auto; display: block; }
 .hidden { display: none !important; }
 
 /* 9. ALBUM */
-.divider-ornament-top { margin-bottom: 15px; }
-.divider-ornament-top img { width: 120px; margin: 0 auto; opacity: 0.7; }
-.album-title { margin-bottom: 30px; font-size: 2rem; padding-top: 10px; text-align: center; }
 .album-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 15px; }
 .album-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 5px; }
 
@@ -210,7 +191,6 @@ img { max-width: 100%; height: auto; display: block; }
 .music-playing i { animation: spin 4s linear infinite; color: var(--primary-red); }
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
-/* ANIMATION ĐIỆU ĐÀ, CHẬM RÃI */
 .anim-fade-up { opacity: 0; transform: translateY(60px); transition: all var(--anim-speed) var(--anim-curve); }
 .anim-fade-down { opacity: 0; transform: translateY(-60px); transition: all var(--anim-speed) var(--anim-curve); }
 .anim-slide-right { opacity: 0; transform: translateX(-60px); transition: all var(--anim-speed) var(--anim-curve); }
@@ -218,11 +198,13 @@ img { max-width: 100%; height: auto; display: block; }
 .anim-zoom-in { opacity: 0; transform: scale(0.9); transition: all var(--anim-speed) var(--anim-curve); }
 .anim-active { opacity: 1 !important; transform: translate(0) scale(1) !important; }
 
-/* DELAY CHO TỪNG ẢNH GALLERY */
-.delay-1 { transition-delay: 0.5s; }
-.delay-2 { transition-delay: 1.2s; } /* Cách nhau xa hơn chút cho điệu */
-.delay-3 { transition-delay: 1.9s; }
+/* --- [ĐÃ XÓA DELAY ĐỂ HIỆN CÙNG LÚC] --- */
+/* Các class delay chỉ dùng cho text hoặc phần khác nếu cần, gallery không dùng */
+.delay-1 { transition-delay: 0.3s; }
+.delay-2 { transition-delay: 0.6s; }
+.delay-3 { transition-delay: 0.9s; }
 
+/* MOBILE */
 @media (max-width: 600px) { .main-title { font-size: 2.2rem; } }
 @media (max-width: 500px) {
     .side-pattern { width: 25px; } 

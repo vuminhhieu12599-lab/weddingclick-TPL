@@ -43,7 +43,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* =========================================
-   3. HERO (BÌA) - ĐÃ SỬA FONT NGÀY THÁNG
+   3. HERO (BÌA)
    ========================================= */
 .hero { 
     height: 100vh; min-height: 600px; 
@@ -66,42 +66,38 @@ img { max-width: 100%; height: auto; display: block; }
     width: 90%; max-width: 400px;
     margin-bottom: 20px;
 }
-.hero-title { font-family: var(--font-script); font-size: 3.5rem; line-height: 1.1; margin: 10px 0; }
 
-/* --- ĐÂY LÀ PHẦN SỬA FONT --- */
-/* ... (Các phần trên giữ nguyên) ... */
+/* SỬA FONT VÀ CHỈNH LẠI CỠ CHỮ */
+.hero-title { 
+    font-family: var(--font-script); 
+    font-size: 3.5rem; 
+    line-height: 1.1; 
+    margin: 10px 0;
+    color: #fff; /* Giữ màu trắng */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Thêm bóng nhẹ cho dễ đọc trên nền ảnh */
+}
 
-/* =========================================
-   SỬA LẠI FONT NGÀY THÁNG (HERO)
-   ========================================= */
+/* SỬA LẠI FONT NGÀY THÁNG (HERO) - Dùng Quicksand cho rõ ràng */
 .hero-date { 
     border-top: 1px solid rgba(255,255,255,0.9); 
     border-bottom: 1px solid rgba(255,255,255,0.9); 
     padding: 15px 0; margin: 20px 0; 
-    
-    /* ĐỔI VỀ FONT KHÔNG CHÂN (QUICKSAND) GIỐNG BÊN DƯỚI */
     font-family: 'Quicksand', sans-serif !important; 
-    
     font-size: 1.2rem; 
-    font-weight: 700; /* In đậm */
-    letter-spacing: 2px; /* Dãn chữ rộng ra cho sang */
+    font-weight: 700; 
+    letter-spacing: 2px; 
     display: flex; justify-content: center; align-items: center; gap: 15px;
     text-transform: uppercase;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Đổ bóng nhẹ cho dễ đọc */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-/* Số ngày to nổi bật hơn */
 .hero-date .day { 
-    font-size: 2.5rem; /* Số to hẳn lên */
+    font-size: 2.5rem; 
     font-weight: 700;
     line-height: 1;
     position: relative;
-    top: -2px; /* Căn chỉnh lại cho cân đối với chữ 2 bên */
+    top: -2px; 
 }
-
-/* ... (Các phần dưới giữ nguyên) ... */
-.hero-date .day { font-size: 1.5rem; } /* Số ngày to hơn chút xíu */
-/* ----------------------------- */
 
 .hero-guest-name { 
     font-family: var(--font-script); font-size: 2.2rem; 
@@ -166,17 +162,12 @@ img { max-width: 100%; height: auto; display: block; }
     position: relative; z-index: 5;
 }
 
-/* =========================================
-   SỬA FONT TIÊU ĐỀ THIỆP (GIỐNG CHỮ "THIỆP MỜI")
-   ========================================= */
 .invitation-card h3 {
-    /* Đổi sang font có chân sang trọng */
     font-family: 'Playfair Display', serif; 
-    
-    font-size: 1.8rem; /* Điều chỉnh kích thước cho vừa vặn */
+    font-size: 1.8rem;
     color: var(--primary);
     margin-bottom: 20px;
-    text-transform: uppercase; /* Viết hoa toàn bộ cho trang trọng */
+    text-transform: uppercase; 
     letter-spacing: 1px;
     line-height: 1.3;
     font-weight: 700;
@@ -268,10 +259,32 @@ img { max-width: 100%; height: auto; display: block; }
 .form-group { margin-bottom: 15px; }
 .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; }
 
-/* MOBILE RESPONSIVE */
+/* =========================================
+   10. MOBILE RESPONSIVE (QUAN TRỌNG)
+   ========================================= */
 @media (max-width: 768px) {
+    /* Mở rộng khung chứa để có thêm chỗ hiển thị tên */
+    .hero-content {
+        width: 95%; /* Mở rộng tối đa 95% màn hình */
+        max-width: 95%; /* Bỏ giới hạn 400px nếu cần */
+        padding: 15px;
+    }
+
     .main-title { font-size: 1.5rem; }
-    .hero-title { font-size: 2.8rem; }
+    
+    /* Điều chỉnh font tên Dâu Rể nhỏ lại để vừa 1 dòng */
+    .hero-title { 
+        font-size: 2.2rem; /* Giảm từ 3.5rem xuống 2.2rem */
+        white-space: nowrap; /* Cố gắng ép thành 1 dòng */
+    }
+    
+    /* Nếu tên quá dài, tự động co giãn dòng cho đẹp */
+    @media (max-width: 360px) {
+        .hero-title { font-size: 1.8rem; } /* Màn hình siêu nhỏ thì giảm tiếp */
+    }
+
+    .hero-guest-name { font-size: 1.8rem !important; }
+
     .gallery-mini { height: 280px; }
     .gallery-item { height: 160px; }
     .gallery-item.center { height: 250px; }

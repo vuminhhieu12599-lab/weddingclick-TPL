@@ -32,7 +32,7 @@ function toggleMusic() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const weddingDateStr = "January 30, 2026 11:00:00"; 
+    const weddingDateStr = "June 30, 2026 11:00:00"; 
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxjAHleuy7Dg8cTtsCBnP82kETkQ1vXBdaOgVt0YXu-7VHXsxIqsvU1gvfEVvSqGm4/exec';
 
     // TÊN KHÁCH

@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-    
-    // 1. ANIMATION SCROLL
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -8,31 +6,29 @@ document.addEventListener("DOMContentLoaded", function() {
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 }); // Giữ threshold thấp để hiệu ứng bắt đầu sớm nhưng diễn ra từ từ
+    }, { threshold: 0.1 }); 
     document.querySelectorAll('.scroll-anim').forEach(el => observer.observe(el));
 
-    // 2. MỞ CỔNG & HERO
     const gateContainer = document.getElementById('welcome-gate');
     const heroElements = document.querySelectorAll('.hero-section [class*="anim-"]');
     
     setTimeout(() => {
         document.body.classList.add('open-gate');
-        // Kích hoạt animation hero chậm hơn một chút để đợi cổng mở
         heroElements.forEach(el => el.classList.add('anim-active'));
         
+        /* --- [ĐÃ SỬA] GIẢM THỜI GIAN CHỜ CỔNG MỞ XONG (cho khớp với tốc độ nhanh hơn) --- */
         setTimeout(() => {
             if (gateContainer) gateContainer.style.display = 'none';
             playMusicBtn();
-        }, 4500); // Tăng thời gian chờ cổng mở xong (khớp với CSS 4s)
+        }, 3000); // Giảm từ 4500ms xuống 3000ms
     }, 1000);
 
-    // 3. FORM GỬI LỜI CHÚC
-    const scriptURL = 'HÃY_DÁN_LINK_GOOGLE_SCRIPT_CỦA_BẠN_VÀO_ĐÂY'; 
+    const scriptURL = 'YOUR_GOOGLE_SCRIPT_LINK_HERE'; 
     const rsvpForm = document.getElementById('wedding-rsvp-form');
     if (rsvpForm) {
         rsvpForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            if (scriptURL.includes('HÃY_DÁN')) { alert("Chưa cấu hình Script!"); return; }
+            if (scriptURL.includes('YOUR_GOOGLE')) { alert("Chưa cấu hình Script!"); return; }
             const btn = document.getElementById('btn-submit');
             const txt = btn.innerText;
             btn.innerText = "ĐANG GỬI..."; btn.disabled = true;
@@ -42,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // 4. POPUP QR
     const qrModal = document.getElementById('qr-modal');
     const btnShowQR = document.getElementById('btn-show-qr');
     const closeQr = document.querySelector('.close-qr');
@@ -86,7 +81,6 @@ document.addEventListener("DOMContentLoaded", function() {
         navigator.clipboard.writeText(stk).then(() => alert("Đã copy STK!"), () => alert("Lỗi copy"));
     }
 
-    // 5. NHẠC NỀN
     const musicBtn = document.getElementById('musicBtn');
     const bgMusic = document.getElementById('bg-music');
     let isPlaying = false;
