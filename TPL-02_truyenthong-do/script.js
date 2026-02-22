@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 3000); // Giảm từ 4500ms xuống 3000ms
     }, 1000);
 
-    const scriptURL = 'YOUR_GOOGLE_SCRIPT_LINK_HERE'; 
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzRSRLkf_NPUFei-jOUKMxH1FbarXF3YtzNdgiID7T5I3zdLkWvOTUeNM8jB8m19VJj/exec'; 
     const rsvpForm = document.getElementById('wedding-rsvp-form');
     if (rsvpForm) {
         rsvpForm.addEventListener('submit', function(e) {
