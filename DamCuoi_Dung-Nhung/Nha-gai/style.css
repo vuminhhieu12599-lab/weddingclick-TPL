@@ -1,0 +1,224 @@
+/* =========================================
+   File: style.css (CORRECT SPEED: 1.7s & 1.9s)
+   ========================================= */
+
+:root { 
+    --primary-red: #b30000; 
+    --gold: #eebb55; 
+    --text-dark: #333; 
+    --bg-cream: #fffdf9; 
+    --dancing-font: 'Dancing Script', cursive; 
+    --main-font: 'Quicksand', sans-serif; 
+    --serif-font: 'Playfair Display', serif;
+    
+    /* --- [ĐÃ SỬA LẠI] TỐC ĐỘ CHUNG: 1.7s --- */
+    --anim-speed: 1.7s; 
+    --anim-curve: cubic-bezier(0.37, 0, 0.63, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body { 
+    font-family: var(--main-font); 
+    background-color: var(--bg-cream); 
+    color: var(--text-dark); 
+    overflow-x: hidden; 
+}
+
+/* 1. KHUNG CHÍNH */
+.main-content { 
+    max-width: 480px; margin: 0 auto; position: relative; 
+    padding: 0 40px 50px 40px; 
+    box-shadow: 0 0 30px rgba(179, 0, 0, 0.1); 
+    z-index: 10; overflow: visible; 
+    background-color: #fff;
+    background-image: none; 
+}
+
+/* 2. VIỀN HOA VĂN */
+.side-pattern { position: absolute; top: 0; bottom: 0; width: 40px; z-index: 100; background-image: url('images/vien.png'); background-repeat: repeat-y; background-size: 100% auto; background-position: top center; pointer-events: none; background-color: transparent; }
+.pattern-left { left: 0; }
+.pattern-right { right: 0; transform: scaleX(-1); }
+
+/* 3. CỔNG CHỜ */
+#welcome-gate { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 15000; display: flex; transition: visibility 0s 4s; }
+
+.gate-panel { 
+    position: absolute; width: 50%; height: 100%; 
+    background: var(--primary-red); 
+    background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 10px); 
+    
+    /* --- [ĐÃ SỬA LẠI] TỐC ĐỘ MỞ RÈM: 1.9s --- */
+    transition: transform 1.9s cubic-bezier(0.2, 0, 0.2, 1); 
+    transition-delay: 1s; /* Chờ khóa biến mất xong mới mở */
+    overflow: visible !important; 
+}
+.left-panel { left: 0; border-right: 1px solid rgba(0,0,0,0.1); z-index: 2; display: flex; justify-content: center; align-items: center; }
+.right-panel { right: 0; border-left: 1px solid rgba(0,0,0,0.1); z-index: 1; }
+
+.gate-lock-container { position: absolute; top: 50%; right: -40px; transform: translateY(-50%); width: 80px; height: 80px; transition: all 0.8s ease; }
+body.open-gate .gate-lock-container { opacity: 0; transform: translateY(-50%) scale(0.5); }
+.lock-circle { width: 100%; height: 100%; background: #b30000; border: 2px solid #eebb55; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+.hy-symbol { font-size: 40px; color: #eebb55; }
+body.open-gate .left-panel { transform: translateX(-100%); }
+body.open-gate .right-panel { transform: translateX(100%); }
+body.open-gate #welcome-gate { pointer-events: none; }
+
+/* 4. HERO SECTION (KHOẢNG CÁCH SÁT HỌA TIẾT) */
+.text-center { text-align: center; }
+.fancy-font { font-family: var(--dancing-font); font-weight: 700; }
+
+.hero-section { 
+    padding-top: 40px;
+    padding-bottom: 10px; /* Vẫn giữ khoảng cách nhỏ để sát họa tiết */
+}
+
+.sub-title { text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; margin-bottom: 10px; color: #666; }
+.main-title { font-size: 1.8rem; margin-bottom: 15px; line-height: 1.4; padding-top: 10px; white-space: nowrap; }
+.and { color: var(--primary-red); }
+.hy-symbol-red { font-size: 50px; color: var(--primary-red); font-weight: bold; }
+.date-time { text-transform: uppercase; font-weight: 700; margin: 15px 0 5px; }
+.main-date { font-size: 2.2rem; font-family: var(--main-font); font-weight: 700; letter-spacing: 2px; margin-bottom: 20px; }
+.hero-image-frame { 
+    border: 6px solid var(--primary-red); padding: 4px; background: #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+    width: 80%; max-width: 320px; margin: 0 auto; aspect-ratio: 2/3; 
+}
+.hero-image-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+/* HỌA TIẾT SÁT ẢNH BÌA */
+.ornament-divider { 
+    margin: 5px auto 30px; /* Vẫn giữ margin top 5px */
+    width: 100%; 
+    text-align: center; 
+}
+.ornament-divider img {
+    width: 80%; max-width: 300px; height: auto; display: inline-block; opacity: 0.9;
+}
+
+/* Các phần khác */
+.section-spacing { padding: 40px 0; }
+.divider-ornament-top { margin: 0 auto 5px; width: 100%; text-align: center; }
+.divider-ornament-top img { width: 80%; max-width: 300px; height: auto; display: inline-block; opacity: 0.9; }
+.album-title { margin-bottom: 15px; font-size: 2rem; padding-top: 10px; text-align: center; }
+
+/* 5. GIA ĐÌNH & TIỆC */
+.family-grid { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 10px; }
+
+/* Đã nới rộng cột từ 42% lên 45% */
+.family-side { width: 45%; text-align: center; }
+
+/* Đã thu hẹp icon giữa từ 16% xuống 10% */
+.center-icon { width: 10%; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 25px;}
+
+.hy-symbol-red.small { font-size: 35px; line-height: 1; }
+.family-title { font-size: 0.8rem; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; }
+
+/* Đã giảm font chữ xuống 0.75rem và ép khoảng cách chữ lại một chút */
+.parents { font-weight: 700; font-size: 0.75rem; letter-spacing: -0.2px; margin-bottom: 3px; }
+
+.address { font-size: 0.75rem; color: #666; margin-top: 5px; line-height: 1.3; }
+.ceremony-info { margin: 40px 0 20px; }
+.ceremony-label { font-family: var(--serif-font); text-transform: uppercase; letter-spacing: 2px; font-size: 1.2rem; margin-bottom: 10px; }
+.couple-name-script { font-size: 2.5rem; color: var(--text-dark); line-height: 1.2; margin-bottom: 20px; padding-top: 10px; }
+.and-small { font-size: 1.5rem; color: var(--primary-red); }
+.groom-image-frame { border: 5px solid var(--primary-red); margin: 0 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; }
+.groom-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; }
+
+.invite-title { font-size: 2.2rem; margin: 20px 0; padding-top: 10px; }
+.divider-ornament img { width: 150px; opacity: 0.6; margin: 0 auto; }
+.mini-gallery { display: flex; justify-content: center; align-items: center; gap: 5px; margin-bottom: 30px; height: 250px; }
+.img-side { width: 30%; height: 180px; object-fit: cover; border-radius: 4px; }
+.img-center { width: 38%; height: 230px; object-fit: cover; border-radius: 4px; z-index: 2; box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+.event-name { text-transform: uppercase; font-weight: 700; margin-bottom: 10px; }
+
+.time-box { display: flex; justify-content: center; align-items: center; gap: 10px; font-family: var(--main-font); margin: 20px 0; }
+.time-col, .year-col { font-size: 1.1rem; font-weight: 700; }
+.date-col { display: flex; flex-direction: column; align-items: center; line-height: 1; }
+.date-num { font-size: 3.5rem; font-weight: 700; color: var(--primary-red); margin: 5px 0; font-family: var(--main-font); }
+.location-box { border: 2px solid var(--primary-red); border-radius: 15px; padding: 20px; margin: 0; }
+.location-box h3 { font-size: 1.3rem; margin-bottom: 10px; font-weight: 700; }
+.btn-map-red { display: inline-block; padding: 8px 25px; background: #b30000; color: white; border-radius: 20px; text-decoration: none; font-weight: 700; margin-top: 10px; }
+
+/* 6. LỊCH */
+.calendar-title { font-family: var(--main-font); font-weight: 700; text-transform: uppercase; margin-bottom: 20px; font-size: 1.5rem; }
+.calendar-wrapper { border: 4px double var(--primary-red); border-radius: 20px; padding: 25px 10px; margin: 0 5px; background: #fff; box-shadow: 0 10px 30px rgba(179, 0, 0, 0.1); position: relative;}
+.calendar-wrapper::before, .calendar-wrapper::after { content: "•"; color: var(--primary-red); font-size: 30px; line-height: 0; position: absolute; left: 50%; transform: translateX(-50%); }
+.calendar-wrapper::before { top: 10px; }
+.calendar-wrapper::after { bottom: 10px; }
+.calendar-table { width: 100%; border-collapse: collapse; }
+.calendar-table th { font-weight: 700; padding-bottom: 15px; font-size: 0.9rem; color: var(--primary-red); }
+.calendar-table td { text-align: center; vertical-align: middle; font-size: 1rem; color: #444; height: 45px; width: 14.28%; padding: 0; font-family: var(--main-font); font-weight: 600; }
+.heart-date { width: 40px; height: 40px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; justify-content: center; align-items: center; }
+.heart-date i { font-size: 36px; color: var(--primary-red); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1; }
+.heart-date span { position: relative; z-index: 2; color: #fff; font-weight: bold; font-size: 0.9rem; line-height: 1; padding-top: 3px; font-family: var(--main-font); }
+@keyframes heartBeat { 0% { transform: scale(1) translate(-50%, -50%); } 50% { transform: scale(1.1) translate(-45%, -45%); } 100% { transform: scale(1) translate(-50%, -50%); } }
+.heart-date i { animation: heartBeat 2s infinite ease-in-out; transform-origin: center center; }
+
+/* 7. RSVP */
+.rsvp-title-wrap { background: #fff; padding-bottom: 20px; }
+.rsvp-title { font-size: 2rem; margin: 0; }
+.rsvp-red-bg { background: var(--primary-red); border-radius: 15px; padding: 35px 25px; margin: 10px 0 30px 0; box-shadow: 0 10px 25px -5px rgba(179, 0, 0, 0.3); }
+.rsvp-container { width: 100%; max-width: 400px; margin: 0 auto; }
+.form-control { width: 100%; padding: 12px; border: none; border-radius: 8px; margin-bottom: 15px; outline: none; font-family: var(--main-font); }
+.buttons-section { padding: 20px 0 40px; background: #fff; }
+.action-buttons-group { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+.btn-custom { width: 100%; max-width: 250px; padding: 12px; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: 0.3s; }
+.btn-white-shadow { background: #fff; color: var(--text-dark); border: 1px solid #eee; }
+.btn-white-shadow:hover { background: #f0f0f0; }
+.btn-red-shadow { background: #b30000; color: #fff; }
+.btn-red-shadow:hover { background: #d90000; }
+
+/* 8. POPUP QR */
+.qr-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 20000; display: flex; align-items: center; justify-content: center; animation: popupZoom 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+@keyframes popupZoom { from { opacity: 0; transform: scale(0.7); } to { opacity: 1; transform: scale(1); } }
+.qr-content { background: #fff; padding: 25px; border-radius: 15px; width: 90%; max-width: 350px; position: relative; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+.close-qr { position: absolute; top: 10px; right: 15px; font-size: 30px; font-weight: bold; color: #999; cursor: pointer; line-height: 1; }
+.qr-img { width: 180px; margin: 10px auto; border: 1px solid #ddd; padding: 5px; border-radius: 5px; }
+.qr-actions { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
+.btn-action { padding: 8px 15px; border-radius: 5px; border: none; cursor: pointer; font-family: var(--main-font); font-size: 0.9rem; display: flex; align-items: center; gap: 5px; text-decoration: none; }
+.btn-copy { background: #eee; color: #333; }
+.btn-download { background: #b30000; color: #fff; }
+.hidden { display: none !important; }
+
+/* 9. ALBUM */
+.album-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 15px; }
+.album-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 5px; }
+
+/* 10. FOOTER */
+.thankyou-section { position: relative; width: 100%; margin-top: 30px; border-radius: 15px; overflow: hidden; z-index: 20; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+.thankyou-img-wrap { position: relative; width: 100%; height: 400px; overflow: hidden; background: #000; }
+.ty-img { width: 100%; height: 100%; object-fit: cover; display: block; filter: blur(1.5px) brightness(0.7); transform: scale(1.05); transition: all 3s ease; }
+.thankyou-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 100%; color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.7); z-index: 30; }
+.ty-text { font-size: 3rem; margin: 0; line-height: 1; }
+.ty-sub { font-style: italic; font-size: 1rem; margin-top: 10px; }
+
+/* 11. MUSIC & ANIMATION */
+.music-control { position: fixed; bottom: 20px; left: 20px; width: 45px; height: 45px; background: rgba(255, 255, 255, 0.9); border: 2px solid var(--text-dark); border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 10000; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+.music-control i { font-size: 20px; color: var(--text-dark); }
+.music-playing i { animation: spin 4s linear infinite; color: var(--primary-red); }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+.anim-fade-up { opacity: 0; transform: translateY(60px); transition: all var(--anim-speed) var(--anim-curve); }
+.anim-fade-down { opacity: 0; transform: translateY(-60px); transition: all var(--anim-speed) var(--anim-curve); }
+.anim-slide-right { opacity: 0; transform: translateX(-60px); transition: all var(--anim-speed) var(--anim-curve); }
+.anim-slide-left { opacity: 0; transform: translateX(60px); transition: all var(--anim-speed) var(--anim-curve); }
+.anim-zoom-in { opacity: 0; transform: scale(0.9); transition: all var(--anim-speed) var(--anim-curve); }
+.anim-active { opacity: 1 !important; transform: translate(0) scale(1) !important; }
+
+/* --- [ĐÃ XÓA DELAY ĐỂ HIỆN CÙNG LÚC] --- */
+/* Các class delay chỉ dùng cho text hoặc phần khác nếu cần, gallery không dùng */
+.delay-1 { transition-delay: 0.3s; }
+.delay-2 { transition-delay: 0.6s; }
+.delay-3 { transition-delay: 0.9s; }
+
+/* MOBILE */
+@media (max-width: 600px) { .main-title { font-size: 2.2rem; } }
+@media (max-width: 500px) {
+    .side-pattern { width: 25px; } 
+    .main-content { padding: 0 30px 50px 30px; }
+    .main-title { white-space: nowrap; font-size: 7.5vw; padding-top: 10px; line-height: 1.3; }
+    .and { font-size: 0.9em; margin: 0 2px; }
+    .thankyou-section { width: calc(100% + 60px); margin-left: -30px; } 
+}
+@media (max-width: 360px) { .main-title { font-size: 7vw; } }
