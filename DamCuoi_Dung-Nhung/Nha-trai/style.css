@@ -104,11 +104,19 @@ body.open-gate #welcome-gate { pointer-events: none; }
 
 /* 5. GIA ĐÌNH & TIỆC */
 .family-grid { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 10px; }
-.family-side { width: 42%; text-align: center; }
-.center-icon { width: 16%; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 25px;}
+
+/* Đã nới rộng cột từ 42% lên 45% */
+.family-side { width: 45%; text-align: center; }
+
+/* Đã thu hẹp icon giữa từ 16% xuống 10% */
+.center-icon { width: 10%; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 25px;}
+
 .hy-symbol-red.small { font-size: 35px; line-height: 1; }
 .family-title { font-size: 0.8rem; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; }
-.parents { font-weight: 700; font-size: 0.8rem; margin-bottom: 3px; }
+
+/* Đã giảm font chữ xuống 0.75rem và ép khoảng cách chữ lại một chút */
+.parents { font-weight: 700; font-size: 0.75rem; letter-spacing: -0.2px; margin-bottom: 3px; }
+
 .address { font-size: 0.75rem; color: #666; margin-top: 5px; line-height: 1.3; }
 .ceremony-info { margin: 40px 0 20px; }
 .ceremony-label { font-family: var(--serif-font); text-transform: uppercase; letter-spacing: 2px; font-size: 1.2rem; margin-bottom: 10px; }
