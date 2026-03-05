@@ -177,4 +177,45 @@ document.addEventListener("DOMContentLoaded", function() {
     const lbImg = document.getElementById('lightbox-img');
     window.openLightbox = (img) => { lb.classList.remove('hidden'); lbImg.src = img.src; }
     window.closeLightbox = () => lb.classList.add('hidden');
+
+    // --- XỬ LÝ FORM GỬI LỜI CHÚC VÀO GOOGLE SHEET ---
+    const rsvpForm = document.getElementById('wedding-rsvp-form');
+    if (rsvpForm) {
+        rsvpForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Ngăn form tải lại trang
+
+            const btnSubmit = document.getElementById('btn-submit-rsvp');
+            const statusText = document.getElementById('form-status');
+            
+            // DÁN LINK WEB APP BẠN VỪA COPY Ở BƯỚC 1 VÀO TRONG DẤU NGOẶC KÉP BÊN DƯỚI
+            const scriptURL = "https://script.google.com/macros/s/AKfycbyLHH768dfqdDJ8XTpE38yHbD5vhuxrwC20e68eiVuwX-J-FJzwGtETpCd7rRnBr-wkzg/exec"; 
+
+            // Lấy dữ liệu từ form
+            const formData = new FormData();
+            formData.append('name', document.getElementById('form-name').value);
+            formData.append('message', document.getElementById('form-message').value);
+            formData.append('attendance', document.getElementById('form-attendance').value);
+
+            // Đổi trạng thái nút bấm cho chuyên nghiệp
+            btnSubmit.innerText = 'Đang gửi...';
+            btnSubmit.disabled = true;
+
+            // Gửi dữ liệu đi
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    statusText.style.display = 'block';
+                    statusText.innerText = 'Cảm ơn bạn đã gửi lời chúc! ❤️';
+                    rsvpForm.reset(); // Xóa trắng form
+                    btnSubmit.innerText = 'Gửi Lời Chúc';
+                    btnSubmit.disabled = false;
+                })
+                .catch(error => {
+                    statusText.style.display = 'block';
+                    statusText.style.color = 'red';
+                    statusText.innerText = 'Có lỗi xảy ra, vui lòng thử lại sau.';
+                    btnSubmit.innerText = 'Gửi Lời Chúc';
+                    btnSubmit.disabled = false;
+                });
+        });
+    }
 });

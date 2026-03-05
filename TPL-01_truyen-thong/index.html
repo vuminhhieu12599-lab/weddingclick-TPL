@@ -123,10 +123,19 @@
         <section class="content-card anim-up">
             <h2 class="card-title">GỬI LỜI CHÚC</h2>
             <form id="wedding-rsvp-form" class="anim-up delay-1">
-                <input type="text" id="form-name" placeholder="Tên của bạn..." required>
-                <textarea rows="3" placeholder="Viết lời chúc..."></textarea>
-                <select><option value="">Bạn sẽ tham dự chứ?</option><option value="yes">Sẽ tham dự</option><option value="no">Rất tiếc, mình bận mất rồi</option></select>
-                <button type="submit" class="btn-submit">Gửi Lời Chúc</button>
+                <input type="text" id="form-name" name="name" placeholder="Tên của bạn..." required>
+                
+                <textarea id="form-message" name="message" rows="3" placeholder="Viết lời chúc..." required></textarea>
+                
+                <select id="form-attendance" name="attendance" required>
+                    <option value="">Bạn sẽ tham dự chứ?</option>
+                    <option value="Sẽ tham dự">Sẽ tham dự</option>
+                    <option value="Rất tiếc, mình bận mất rồi">Rất tiếc, mình bận mất rồi</option>
+                </select>
+                
+                <button type="submit" id="btn-submit-rsvp" class="btn-submit">Gửi Lời Chúc</button>
+                
+                <p id="form-status" style="display:none; margin-top:15px; font-weight:bold; color:var(--primary);"></p>
             </form>
         </section>
         
@@ -170,7 +179,7 @@
         <div class="qr-content">
             <span class="close-qr">×</span><div class="qr-header">Quà Mừng Cưới</div>
             <img id="qr-image-src" src="images/Qr.jpg"><div class="bank-info"><span class="bank-name">TechcomBank</span><span id="stk-text" class="bank-num">19033127791021</span></div>
-            <div class="qr-btns"><button onclick="copySTK()">Copy STK</button><a href="#" class="dl-qr">Tải QR</a></div>
+            <div class="qr-btns"><button onclick="copySTK()">Copy STK</button><a href="images/Qr.jpg" download="Qr.jpg" class="dl-qr">Tải QR</a></div>
         </div>
     </div>
     <div id="lightbox" class="lightbox hidden" onclick="closeLightbox()"><span class="close-lb">×</span><img id="lightbox-img" src=""></div>
