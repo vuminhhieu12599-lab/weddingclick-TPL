@@ -150,7 +150,12 @@ body { font-family: var(--font-main); color: var(--text); background: #fdfbf7; o
 .family-flex { display: flex; justify-content: space-around; align-items: flex-start; }
 .family-col h3 { font-family: var(--font-title); font-weight: 700; font-size: 1.1rem; color: var(--primary); margin-bottom: 10px; }
 .f-icon { font-size: 1.5rem; color: var(--gold); margin-bottom: 10px; }
-.family-col p { font-size: 0.95rem; margin-bottom: 5px; font-weight: 500; }
+.family-col p { 
+    font-size: 0.8rem; /* Đã thu nhỏ cỡ chữ một chút */
+    margin-bottom: 5px; 
+    font-weight: 500; 
+    white-space: nowrap; /* Lệnh này bắt buộc chữ phải nằm trên 1 dòng */
+}
 .divider-vertical { width: 1px; background: #ddd; height: 100px; }
 .event-loc-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; }
 .event-box h3 { font-family: var(--font-title); margin-bottom: 5px; font-weight: bold; text-transform: uppercase; }
