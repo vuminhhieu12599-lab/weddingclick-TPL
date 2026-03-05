@@ -51,10 +51,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // --- 4. CHAT FAKE & TIM BAY ---
     const fakeWishes = [
         { name: "Minh Tuấn", msg: "Chúc hai bạn trăm năm hạnh phúc! ❤️" },
-        { name: "Thu Hà", msg: "Cô dâu xinh quá, chú rể bảnh trai 🥰" },
-        { name: "Team Design", msg: "Cuối cùng cũng cưới rồi! Chúc mừng nha 🎉" },
-        { name: "Anh Hùng", msg: "Sớm sinh quý tử nhé hai em" },
-        { name: "Em Mây", msg: "Đám cưới đẹp quá anh chị ơi 💖" },
+        { name: "Thu Hà", msg: "Cô dâu xinh quá, chú rể đẹp trai 🥰" },
+        { name: "Minh Hiếu", msg: "Cuối cùng cũng cưới rồi! Chúc mừng nha 🎉" },
+        { name: "Em Linh", msg: "Đẹp quá anh chị ơi 💖" },
         { name: "Hội bạn thân", msg: "Quẩy lên nào anh em ơi 🥳" }
     ];
     function addChatMessage(name, msg) {
@@ -125,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // --- 5. BỘ ĐẾM NGƯỢC THÔNG MINH ---
     // Ngày cưới: 30/01/2026 08:00
-    const wedDate = new Date("Jan 30, 2026 08:00:00").getTime();
+    const wedDate = new Date("March 16, 2026 10:00:00").getTime();
     
     // Lưu ID của interval để có thể dừng lại
     const countdownInterval = setInterval(() => {
